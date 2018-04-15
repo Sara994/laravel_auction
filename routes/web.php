@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/arwa',function(){ return view('arwa');});
+Route::get('/item',function(){ return view('item');});
 
 Auth::routes();
 

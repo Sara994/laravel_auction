@@ -1,0 +1,5 @@
+.boot {
+    @import url("https://rawgit.com/twbs/bootstrap/v4-dev/scss/_variables.scss");
+    @import url("https://rawgit.com/twbs/bootstrap/v4-dev/scss/_mixins.scss");
+    @import url("https://rawgit.com/twbs/bootstrap/v4-dev/scss/_carousel.scss");
+  }

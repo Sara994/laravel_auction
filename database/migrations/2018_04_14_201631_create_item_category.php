@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTest extends Migration
+class CreateItemCategory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateTest extends Migration
      */
     public function up()
     {
-        Schema::create('test', function (Blueprint $table) {
+        Schema::create('item_category',function(Blueprint $table){
             $table->increments('id');
-            $table->string('name');
-            $table->integer('age');;
-            $table->string('something');
-            $table->timestamps();
+            $table->string('title');
+            $table->unsignedinteger('parent_id')->nullable();
         });
     }
 
@@ -29,6 +27,6 @@ class CreateTest extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('test');
+        //
     }
 }

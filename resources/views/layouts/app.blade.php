@@ -15,21 +15,26 @@
     </script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/boot.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ assets('style_item.css') }}">
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style_item.css') }}">
+    <script src="{{asset('js/script.js')}}"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title> ZAD </title>
 </head>
 
-<body>
+<body style="display:flex;flex-direction:column;min-height:100vh">
     <header class="navbar" style="max-height:15vh">
         <div style="display:flex; margin:0 5px">
-            <img src="img/logo.png" alt="HTML5 Icon" style="max-height: 10vh;align-self:center">
+            <img src="{{asset('img/logo.png')}}" alt="HTML5 Icon" style="max-height: 10vh;align-self:center">
         </div>
 
         <h2 style="flex:1; align-self:center"> زاد+ </h2>
+        @guest
+        <a style="align-self: center;padding:0 20px" href="{{url('login')}}"> تسجيل دخول</a>
+        <a style="align-self: center;padding:0 20px" href="{{url('register')}}">تسجيل</a>
+        @else
+        <a style="align-self: center;padding:0 20px"> Welcome</a>
+        @endguest
 
-        <a style="align-self: center;padding:0 20px" href="zad_login.php"> تسجيل دخول</a>
         <a style="align-self: center;padding:0 20px" href="Zad_help.php">مساعدة
         </a>
     </header>
@@ -124,8 +129,12 @@
         });
     </script> -->
 
-    <main>
+    <main style="flex:1;display:flex;flex-direction:column">
         @yield('content')
     </main>
+    <script>$('.carousel').carousel()</script>
+    <footer>
+        <p>&copy; 2018 زاد. جميع الحقوق محفوظة.</p>
+    </footer>
 </body>
 </html>
