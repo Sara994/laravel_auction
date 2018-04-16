@@ -17,6 +17,6 @@ class ItemController extends Controller
             }
         }
         $item->update(['photos'=>json_encode($filenames)]);
-        return $filenames;
+        return view('user/profile');
     }
 }
