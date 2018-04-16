@@ -17,7 +17,7 @@ class CreateReview extends Migration
         Schema::create('review', function (Blueprint $table) {
             $table->increments('reviewID');
             $table->integer('itemID');
-            $table->integer('starNum');
+            $table->integer('star_num');
             $table->string('feedback');
             $table->boolean('status');
             $table->timestamps();

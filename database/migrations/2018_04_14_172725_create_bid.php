@@ -18,8 +18,8 @@ class CreateBid extends Migration
             $table->increments('bidID');
             $table->integer('userID');
             $table->integer('auctionID');
-            $table->double('bidAmount');
-            $table->double('maxBid');
+            $table->double('bid_amount');
+            $table->double('max_bid');
             $table->timestamps();
         });
     }

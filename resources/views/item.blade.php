@@ -24,17 +24,14 @@
                     <span>أضف إلى المفضلة</span>
 
                 </div>
-                <hr align="right" style="width:50%">
-                <div style="font-size:1.5rem">
-                    لاب توب مستعمل, استعمال قليل, نظيف وبحالة جيدة
-                </div>
-                <hr align="right" style="width:50%">
-                <div style="font-size:1.5rem">
+                <span style="font-weight:900;font-size:1rem">مستعمل قليلا منذ 2016 سعة 5 جيجابايت</span>
+                <span style="font-weight:900;font-size:1rem;color:rgb(102, 102, 102)">رقم السلعة: 10888738</span>
+             <!-- <hr align="right" style="width:50%"> -->
+                <hr align="right" style="width:50%"> 
+                <div style="font-size:1.3rem">
                     الأقسام: الالكترونيات
                 </div>
-                <div style="font-size:1.25rem">
-                    <div>السعر : ٨٥٠ ريال</div>
-                </div>
+                @yield('price_info')
             </div>
         </div>
         <hr>

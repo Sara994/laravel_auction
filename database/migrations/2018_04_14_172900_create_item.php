@@ -19,10 +19,10 @@ class CreateItem extends Migration
             $table->string('title');
             $table->string('subtitle');
             $table->string('description');
-            $table->double('buyNow');
+            $table->double('buy_now');
             $table->boolean('status');
-            $table->string('payMethod');
-            $table->string('shipMethod');
+            $table->string('pay_method');
+            $table->string('ship_method');
             $table->string('photos');
             $table->string('category');
             $table->string('subCategory');
