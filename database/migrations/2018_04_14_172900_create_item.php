@@ -15,7 +15,7 @@ class CreateItem extends Migration
     {
         //
         Schema::create('item', function (Blueprint $table) {
-            $table->increments('itemID');
+            $table->increments('id');
             $table->string('title');
             $table->string('subtitle');
             $table->string('description');
@@ -23,9 +23,8 @@ class CreateItem extends Migration
             $table->boolean('status');
             $table->string('pay_method');
             $table->string('ship_method');
-            $table->string('photos');
+            $table->longtext('photos')->nullable();
             $table->string('category');
-            $table->string('subCategory');
             $table->timestamps();
         });
     }
