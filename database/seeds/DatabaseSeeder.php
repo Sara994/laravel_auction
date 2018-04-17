@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\ItemCategory;
 use App\User;
 use App\City;
+use App\Item;
 
 class DatabaseSeeder extends Seeder
 {
@@ -32,6 +33,19 @@ class DatabaseSeeder extends Seeder
         ItemCategory::create([
             'title'=>'computers',
             'parent_id'=>1
+        ]);
+        Item::create([
+            'title'=>'Dell XPS 13',
+            'subtitle'=>"Dell Laptop XPS 13",
+            'description'=>"Some description sdf sdf ",
+            'buy_now'=>1000,
+            'status'=>0,
+            'pay_method'=>"cash",
+            'ship_method'=>"FedEX",
+            "photos"=>"[]",
+            "category_id"=>2,
+            "seller_id"=>1,
+            "city_id"=>2
         ]);
     }
 }

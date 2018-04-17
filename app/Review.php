@@ -16,8 +16,10 @@ class Review extends Model
      */
    
    protected $fillable = [
-       'star_num','feedback'
-
+       'star_num','feedback','item_id'
    ];
 
+   function item(){
+       $this->hasOne('App\Review');
+   }
 }

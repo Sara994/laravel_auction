@@ -25,13 +25,13 @@ class CreateItem extends Migration
             $table->string('ship_method');
             $table->longtext('photos')->nullable();
             $table->unsignedinteger('category_id');
-            $table->unsignedinteger('owner_id');
-            $table->unsignedinteger('auction_id');
+            $table->unsignedinteger('seller_id');
+            $table->unsignedinteger('auction_id')->nullable();
             $table->unsignedinteger('city_id');
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('item_category');
-            $table->foreign('owner_id')->references('id')->on('users');
+            $table->foreign('seller_id')->references('id')->on('users');
             $table->foreign('auction_id')->references('id')->on('auction');
             $table->foreign('city_id')->references('id')->on('city');
         });

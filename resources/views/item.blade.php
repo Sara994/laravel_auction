@@ -5,22 +5,26 @@
         <div style="display:flex">
             <div style="flex:1;padding:10px">
                 <div>
-                    <img style="width:100%" src="img/dell.png" />
+                    @if( count($item->photos()) > 0)
+                        <img style="width:100%" src="{{ url($item->photos()[0]) }}" />
+                    @else
+                        <img style="width:100%" src="{{ url('img/placeholder.gif') }}" />
+                    @endif
                 </div>
                 <div class="more_products">
-                    <div><img style="max-width:100%" src="img/xps13-1.jpeg" /></div>
-                    <div><img style="max-width:100%" src="img/xps13-2.png" /></div>
-                    <div><img style="max-width:100%" src="img/xps13-1.png" /></div>
+                    @for ($i = 1; $i < count($item->photos()); $i++)
+                        <div><img style="max-width:100%" src="{{ url($item->photos()[$i]) }}" /></div>
+                    @endfor
                 </div>
             </div>
             <div style="flex:3;display:flex;flex-direction:column;justify-content:space-between">
                 <div style="align-self:flex-end;margin:20px">
                     <h3>البائع: <a href="#">ِAhmad201</a> </h3>
-                    <div style="width:20%"><img style="max-width: 100%" src="img/rating.jpeg"></div>
+                    <div style="width:20%"><img style="max-width: 100%" src="{{url('img/rating.jpeg')}}"></div>
                 </div>
                 <div>
-                    <span style="font-weight:900;font-size:2rem">{{$one->title}}</span>
-                    <span><img class="fav_star" src="img/star.png"></span>
+                    <span style="font-weight:900;font-size:2rem">{{$item->title}}</span>
+                    <span><img class="fav_star" src="{{url('img/star.png')}}"></span>
                     <span>أضف إلى المفضلة</span>
 
                 </div>
@@ -29,7 +33,7 @@
              <!-- <hr align="right" style="width:50%"> -->
                 <hr align="right" style="width:50%"> 
                 <div style="font-size:1.3rem">
-                    الأقسام: الالكترونيات
+                    الأقسام: {{json_encode( $item->category() )}}
                 </div>
                 @yield('price_info')
             </div>
@@ -40,9 +44,9 @@
         </div>
     </div>
     <div style="flex:1">
-        <img style="max-width:100%" src="img/lenovo.png">
-        <img style="max-width:100%" src="img/lenovo.png">
-        <img style="max-width:100%" src="img/lenovo.png">
+        <img style="max-width:100%" src="{{url('img/lenovo.png')}}">
+        <img style="max-width:100%" src="{{url('img/lenovo.png')}}">
+        <img style="max-width:100%" src="{{url('img/lenovo.png')}}">
     </div>
 </div>
 @endsection

@@ -90,6 +90,9 @@
                 <div class="dropdown-content">
                     @foreach (App\ItemCategory::whereNull('parent_id')->get() as $category)
                         <div><a href="#">{{$category->title}}</a></div>
+                        @foreach($category->children() as $sub)
+                            <div>{{$sub->title}}</div>
+                        @endforeach    
                     @endforeach
                 </div>
             </div>
@@ -161,5 +164,6 @@
     <footer>
         <p>&copy; 2018 زاد. جميع الحقوق محفوظة.</p>
     </footer>
+    <script>autocomplete(document.getElementById('search'),[])</script>
 </body>
 </html>

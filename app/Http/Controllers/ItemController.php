@@ -5,11 +5,10 @@ use App\Item;
 use Illuminate\Http\Request;
 use Auth;
 
-class ItemController extends Controller
-{
+class ItemController extends Controller{
     function create(Request $request){
         $fields = $request->except('photos');
-        $fields['owner_id'] = Auth::user()->id;
+        $fields['seller_id'] = Auth::user()->id;
         $item = Item::create($fields);
         $filenames = [];
         if(isset($request->photos)){
@@ -27,7 +26,7 @@ class ItemController extends Controller
         $item = Item::find($itemId);
 
 
-        return view('item',['one'=>$item]);
+        return view('item',['item'=>$item]);
     }
 
     function search($needle){

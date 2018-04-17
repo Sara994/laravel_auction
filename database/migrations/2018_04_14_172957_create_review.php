@@ -15,14 +15,17 @@ class CreateReview extends Migration
     {
         //
         Schema::create('review', function (Blueprint $table) {
-            $table->increments('reviewID');
-            $table->integer('itemID');
+            $table->increments('id');
+            $table->unsignedinteger('item_id');
+            $table->unsignedinteger('user_id');
             $table->integer('star_num');
             $table->string('feedback');
-            $table->boolean('status');
+            //$table->boolean('status');
             $table->timestamps();
-        });
 
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('item_id')->references('id')->on('item');
+        });
     }
 
     /**

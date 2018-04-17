@@ -14,14 +14,14 @@ class Item extends Model
      * @var array
      */
     protected $fillable = [
-        'title','subtitle','description','buy_now','status','pay_method', 'ship_method','photos','category_id','owner_id','auction_id','city_id'
+        'title','subtitle','description','buy_now','status','pay_method', 'ship_method','photos','category_id','seller_id','auction_id','city_id'
     ];
 
-    function category(){
-        return $this->hasOne('App\ItemCategory','cateogry_id','id');
+    public function category(){
+        return $this->hasOne('App\ItemCategory','id','category_id')->get();
     }
 
-    function owner(){
+    function seller(){
         return $this->hasOne('App\User','id');
     }
     function auction(){
@@ -29,5 +29,8 @@ class Item extends Model
     }
     function city(){
         return $this->hasOne('App\city','id');
+    }
+    function photos(){
+        return json_decode($this->photos);
     }
 }

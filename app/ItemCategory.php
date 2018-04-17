@@ -10,10 +10,10 @@ class ItemCategory extends Model
     protected $fillable = ['title','parent_id'];
 
     function parent(){
-        $this->hasOne('App\ItemCategory','parent_id','id');
+        return $this->hasOne('App\ItemCategory');
     }
 
     function children(){
-        $this->hasMany('App\ItemCategory');
+        return $this->where('parent_id',$this->id)->get();
     }
 }
