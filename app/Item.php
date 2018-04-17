@@ -22,12 +22,12 @@ class Item extends Model
     }
 
     function owner(){
-        return $this->hasOne('App\User','owner_id','id');
+        return $this->hasOne('App\User','id');
     }
     function auction(){
-        return $this->hasOne('App\Auction','auction_id','id');
+        return $this->hasOne('App\Auction','id');
     }
     function city(){
-        return $this->hasOne('App\city','city_id','id');
+        return $this->hasOne('App\city','id');
     }
 }
