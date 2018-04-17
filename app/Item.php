@@ -14,6 +14,20 @@ class Item extends Model
      * @var array
      */
     protected $fillable = [
-        'title','subtitle','description','buy_now','status','pay_method', 'ship_method','photos','category','subcategory'
+        'title','subtitle','description','buy_now','status','pay_method', 'ship_method','photos','category_id','owner_id','auction_id','city_id'
     ];
+
+    function category(){
+        return $this->hasOne('App\ItemCategory','cateogry_id','id');
+    }
+
+    function owner(){
+        return $this->hasOne('App\User','owner_id','id');
+    }
+    function auction(){
+        return $this->hasOne('App\Auction','auction_id','id');
+    }
+    function city(){
+        return $this->hasOne('App\city','city_id','id');
+    }
 }

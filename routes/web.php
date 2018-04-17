@@ -11,6 +11,8 @@
 |
 */
 use Intervention\Image\ImageServiceProvider;
+use App\ItemCategory;
+//use Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,8 +21,15 @@ Route::get('/item/{id}','ItemController@show');
 Route::get('/bid',function(){ return view('item/bid');});
 
 Route::group(['prefix'=>'user'],function(){
-    Route::get('/profile',function(){ return view('user/profile');});
-    Route::get('/new_item',function(){ return view('user/new_item');});
+    Route::get('profile',function(){
+        $user = Auth::user();
+        return view('user/profile',['user'=> $user]);
+    });
+    Route::post('profile','UserController@update')->name('userprofile');
+    Route::get('new_item',function(){
+        $categories = ItemCategory::all();
+        return view('user/new_item',['categories'=>$categories]);
+    });
     Route::post('/new_item','ItemController@create');
     Route::get('/bids',function(){ return view('user/bids');});
     Route::get('/new_auction',function(){ return view('user/new_auction');});

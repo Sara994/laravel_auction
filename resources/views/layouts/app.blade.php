@@ -13,12 +13,20 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/boot.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style_item.css') }}">
     <script src="{{asset('js/script.js')}}"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title> ZAD </title>
+    <style>
+        body{
+            text-align:right;
+
+        }
+        </style>
 </head>
 
 <body style="display:flex;flex-direction:column;min-height:100vh">
@@ -29,13 +37,34 @@
 
         <h2 style="flex:1; align-self:center"> زاد+ </h2>
         @guest
-        <a style="align-self: center;padding:0 20px" href="{{url('login')}}"> تسجيل دخول</a>
+        <!-- <a style="align-self: center;padding:0 20px" href="{{url('login')}}"> تسجيل دخول</a>
         <a style="align-self: center;padding:0 20px" href="{{url('register')}}">تسجيل</a>
+         -->
+        
+        <span><a class="nav-link" href="{{ route('login') }}">{{ __('main.login') }}</a></span>
+        <span><a class="nav-link" href="{{ route('register') }}">{{ __('main.register') }}</a></span>
         @else
-        <a style="align-self: center;padding:0 20px"> Welcome</a>
+        <span class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->first_name }} 
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{url('user/profile')}}">الملف الشخصي</a>
+                <a class="dropdown-item" href="{{url('user/new_item')}}">أضف منتج</a>
+
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    {{ __('main.logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
+        </span>
         @endguest
 
-        <a style="align-self: center;padding:0 20px" href="Zad_help.php">مساعدة
+        <a style="align-self: center;padding:0 20px" href="{{url('help')}}">مساعدة
         </a>
     </header>
 
@@ -48,6 +77,7 @@
             <div class="dropdown">
                 <button class="dropbtn" style="margin:0px;border-left:solid; border-right:solid; border-width: thin; border-color:black">المدن</button>
                 <div class="dropdown-content">
+                {{App\City::all()}}
                     <h>1</h>
                     <br>
                     <h>2</h>

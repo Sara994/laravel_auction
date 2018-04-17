@@ -38,7 +38,7 @@
             <div>
                 Category :*  
                 <br>
-                <input type="text" name="category" value="" style="text-align:right;">
+                <input type="text" name="category_id" value="" style="text-align:right;">
             </div>
 
              <div>

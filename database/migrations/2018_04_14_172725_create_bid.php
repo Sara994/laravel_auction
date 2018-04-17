@@ -15,12 +15,15 @@ class CreateBid extends Migration
     {
         //
         Schema::create('bid', function (Blueprint $table) {
-            $table->increments('bidID');
-            $table->integer('userID');
-            $table->integer('auctionID');
+            $table->increments('id');
+            $table->unsignedinteger('user_id');
+            $table->unsignedinteger('auction_id');
             $table->double('bid_amount');
             $table->double('max_bid');
             $table->timestamps();
+            
+            $table->foreign('auction_id')->references('id')->on('auction');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 use App\Item;
 use Illuminate\Http\Request;
+use Auth;
 
 class ItemController extends Controller
 {
     function create(Request $request){
-        $item = Item::create($request->except('photos'));
+        $fields = $request->except('photos');
+        $fields['owner_id'] = Auth::user()->id;
+        $item = Item::create($fields);
         $filenames = [];
         if(isset($request->photos)){
             for($i = 0; $i < count($request->photos) ;$i++) {
@@ -25,5 +28,10 @@ class ItemController extends Controller
 
 
         return view('item',['one'=>$item]);
+    }
+
+    function search($needle){
+        $items = Item::where('title','like',"%$needle%")->get();
+        return json_encode($items);
     }
 }
