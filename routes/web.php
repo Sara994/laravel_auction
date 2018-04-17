@@ -15,7 +15,7 @@ use Intervention\Image\ImageServiceProvider;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/item',function(){ return view('item/buynow');});
+Route::get('/item/{id}','ItemController@show');
 Route::get('/bid',function(){ return view('item/bid');});
 
 Route::group(['prefix'=>'user'],function(){

@@ -19,7 +19,7 @@
                     <div style="width:20%"><img style="max-width: 100%" src="img/rating.jpeg"></div>
                 </div>
                 <div>
-                    <span style="font-weight:900;font-size:2rem">لابتوب لينوفا</span>
+                    <span style="font-weight:900;font-size:2rem">{{$one->title}}</span>
                     <span><img class="fav_star" src="img/star.png"></span>
                     <span>أضف إلى المفضلة</span>
 

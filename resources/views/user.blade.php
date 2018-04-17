@@ -72,7 +72,8 @@
                 </ul>
 
 
-                    <li><a href="#"><span class="fas fa-gavel"></span>مزايداتي</a></li>  
+                    <li><a href="#"><span class="fas fa-gavel"></span>مزاداتي</a></li>  
+                    <li><a href="#"><span class="fas fa-gavel"></span>مبيعاتي</a></li>  
                     <li><a href="#"> <span class ="fa cart-plus"></span> مشترياتي</a></li>
                     <li><a href="#"><span class ="fa fa-users"></span> تقيماتي</a></li>   
                 </ul>  

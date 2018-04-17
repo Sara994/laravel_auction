@@ -19,4 +19,11 @@ class ItemController extends Controller
         $item->update(['photos'=>json_encode($filenames)]);
         return view('user/profile');
     }
+
+    function show($itemId){
+        $item = Item::find($itemId);
+
+
+        return view('item',['one'=>$item]);
+    }
 }
