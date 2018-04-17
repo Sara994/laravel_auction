@@ -88,12 +88,11 @@
             <div style="flex:1" class="dropdown">
                 <button class="dropbtn" style="margin:0px;border-left:solid; border-right-color:#b30000; border-width: thin; border-color:black">الأقسام</button>
                 <div class="dropdown-content">
-                    @foreach (App\ItemCategory::all() as $category)
-                        <div>{{$category->title}}</div>
+                    @foreach (App\ItemCategory::whereNull('parent_id')->get() as $category)
+                        <div><a href="#">{{$category->title}}</a></div>
                     @endforeach
                 </div>
             </div>
-
         </div>
         <div style="align-self:center;margin-right:15px;">
             <button>ابحث</button>
