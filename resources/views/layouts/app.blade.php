@@ -77,24 +77,20 @@
             <div class="dropdown">
                 <button class="dropbtn" style="margin:0px;border-left:solid; border-right:solid; border-width: thin; border-color:black">المدن</button>
                 <div class="dropdown-content">
-                {{App\City::all()}}
-                    <h>1</h>
-                    <br>
-                    <h>2</h>
-                    <br>
-                    <h>3</h>
-                    <br>
+                    
+                    @foreach (App\City::all() as $city)
+                        <div><a href="#">{{$city->name}}</a></div>
+                    @endforeach
+                    
                 </div>
             </div>
 
             <div style="flex:1" class="dropdown">
                 <button class="dropbtn" style="margin:0px;border-left:solid; border-right-color:#b30000; border-width: thin; border-color:black">الأقسام</button>
                 <div class="dropdown-content">
-                    <ul>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                    </ul>
+                    @foreach (App\ItemCategory::all() as $category)
+                        <div>{{$category->title}}</div>
+                    @endforeach
                 </div>
             </div>
 

@@ -12,4 +12,8 @@ class ItemCategory extends Model
     function parent(){
         $this->hasOne('App\ItemCategory','parent_id','id');
     }
+
+    function children(){
+        $this->hasMany('App\ItemCategory');
+    }
 }

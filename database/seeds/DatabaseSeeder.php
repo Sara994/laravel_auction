@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         City::create(['name'=>'Riyadh']);
+        City::create(['name'=>'Jeddha']);
         User::create([
             'username'=>'abdulrahman',
             'email'=>'asd@asd.com',
