@@ -9,6 +9,7 @@
                     اسم المنتج: *
                 </lable>
                 <input type="text"  name="title" value="" style="text-align:right;">
+          
             </div>
 
             <div>
@@ -27,40 +28,20 @@
              <div>
              القسم الرئيسي : *
                 <br>
-                    <li>
-                    <a href="#"><span class="arrow">&#9660;</span></a>
-                    <ul class="sub-menu">
-                    <li>الكترونيات </li>
-                    <li>سيارات</li>
-                    </ul>
-                    </li>
+                <select name="category_id">
+                    <option value="الاقسام"></option>
+                    @foreach(App\ItemCategory::all() as $category)
+                        <option value="{{$category->id}}">{{$category->title}}</option>
+                    @endforeach
+                </select>  
             </div>
-            <div>
-                Category :*  
-                <br>
-                <input type="text" name="category_id" value="" style="text-align:right;">
-            </div>
-
-             <div>
-               القسم الفرعي : *
-                <br>
-                <li>
-                    <a href="#"><span class="arrow">&#9660;</span></a>
-                    <ul class="sub-menu">
-                    <li>الكترونيات </li>
-                    <li>سيارات</li>
-                    </ul>
-                    </li>   
-             </div>
-
-
            <div>
                 الوصف :*  
                 <br>
                 <input type="text" name="description" value="" style="text-align:right;">
             </div>
             <div>
-                Buy Now :*  
+                شراء :*  
                 <br>
                 <input type="text" name="buy_now" value="" style="text-align:right;">
             </div>
@@ -69,13 +50,22 @@
             <div>
                 المدينة:* 
                 <br>
-                <input type="text" name="city" value="ناخذها من بوفايل اليوزر" style="text-align:right;">
+                <select name="city_id">
+                    <option value="الاقسام"></option>
+                    @foreach(App\City::all() as $city)
+                        <option value="{{$city->id}}">{{$city->name}}</option>
+                    @endforeach
+                </select>  
             </div>
 
             <div>
+                 ارفاق الصور:* 
+                <br><input type="file"  name='photos[]' style="text-align:right;">             
+            </div>
+             <div>
                 طريقة الدفع:* 
                 <br>
-                <input type="checkbox" name="sellerpage"  style="width:auto">
+                <input type="checkbox" name="sellerpage"   style="width:auto">
                 <br>
                 <input type="checkbox" name="sellerpage"  style="width:auto">
                 <br>
@@ -94,12 +84,7 @@
                 <input type="text"  name='pay_method' value="" style="text-align:right;">
                 
             </div>
-            <div>
-                 طريفة التوصيل:* 
-                <br>
-                <input type="file"  name='photos[]' style="text-align:right;">
-                
-            </div>
+        
 
             <input type="submit"  value="تنفيذ" style="margin:10px auto">
         </form>
