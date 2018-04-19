@@ -28,27 +28,13 @@
              <div>
              القسم الرئيسي : *
                 <br>
-                <select>
-                  <option value="الاقسام"></option>
-                 <option value="">الالكترونيات</option>
+                <select name="category_id">
+                    <option value="الاقسام"></option>
+                    @foreach(App\ItemCategory::all() as $category)
+                        <option value="{{$category->id}}">{{$category->title}}</option>
+                    @endforeach
                 </select>  
             </div>
-            <div>
-                Category :*  
-                <br>
-                <input type="text" name="category_id" value="" style="text-align:right;">
-            </div>
-
-             <div>
-               القسم الفرعي : *
-                <br>
-                <select>
-                  <option value="الاقسام"></option>
-                 <option value="">الالكترونيات</option>
-                </select>  
-             </div>
-
-
            <div>
                 الوصف :*  
                 <br>
@@ -64,7 +50,12 @@
             <div>
                 المدينة:* 
                 <br>
-                <input type="text" name="city" value="" style="text-align:right;">
+                <select name="city_id">
+                    <option value="الاقسام"></option>
+                    @foreach(App\City::all() as $city)
+                        <option value="{{$city->id}}">{{$city->name}}</option>
+                    @endforeach
+                </select>  
             </div>
 
             <div>
