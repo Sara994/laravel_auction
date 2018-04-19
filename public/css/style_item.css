@@ -294,7 +294,6 @@ body {
     justify-content: center;
 }
 body {
-    font-family: Verdana, sans-serif;
     font-size: 0.9em;
     direction: rtl;
 }
@@ -336,7 +335,6 @@ nav ul li {
 }
 
 .register_form div input {
-    width: 100%;
 }
 
 
