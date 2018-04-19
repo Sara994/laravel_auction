@@ -5,6 +5,7 @@ use App\ItemCategory;
 use App\User;
 use App\City;
 use App\Item;
+use App\Auction;
 
 class DatabaseSeeder extends Seeder
 {
@@ -46,6 +47,29 @@ class DatabaseSeeder extends Seeder
             "category_id"=>2,
             "seller_id"=>1,
             "city_id"=>2
+        ]);
+
+        Auction::create([
+            'start_time'=>'2018-04-14',
+            'end_time'=>'2018-04-21',
+            'start_price'=>100,
+            'min_increment'=>50,
+            'buy_now'=>1500            
+        ]);
+
+        Item::create([
+            'title'=>'Lenovo XPS 13',
+            'subtitle'=>"Lenovo Laptop XPS 13",
+            'description'=>"Some description sdf sdf ",
+            'buy_now'=>1000,
+            'status'=>0,
+            'pay_method'=>"cash",
+            'ship_method'=>"FedEX",
+            "photos"=>"[]",
+            "category_id"=>2,
+            "seller_id"=>1,
+            "city_id"=>2,
+            "auction_id"=>1
         ]);
     }
 }

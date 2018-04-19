@@ -17,10 +17,13 @@ class CreateAuction extends Migration
             $table->increments('id');
             $table->datetime('start_time');
             $table->datetime('end_time');
-            $table->string('winner');
+            $table->unsignedinteger('winner_id')->nullable();
             $table->double('min_increment',11,2);
             $table->double('buy_now',11,2);
+            $table->double('start_price',11,2);
             $table->timestamps();
+
+            $table->foreign('winner_id')->references('id')->on('users');
         });
     }
 

@@ -25,8 +25,10 @@ class ItemController extends Controller{
     function show($itemId){
         $item = Item::find($itemId);
 
-
-        return view('item',['item'=>$item]);
+        if($item->auction)
+            return view('item/bid',['item'=>$item]);
+        else
+            return view('item/buynow',['item'=>$item]);
     }
 
     function search($needle){

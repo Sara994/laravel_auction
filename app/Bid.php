@@ -13,7 +13,7 @@ class Bid extends Model{
      * @var array
      */
     protected $fillable = [
-        'bid_amount','max_bid','user_id','auction_id'
+        'bid_amount','max_bid','user_id','auction_id','price','max_price'
     ];
 
     function user(){

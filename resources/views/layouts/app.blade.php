@@ -109,27 +109,23 @@
                 <div>
                     <div class="header">
                         <div class="menu">
-                            <ul class="menu_list">
-
+                            <ul class="menu_list"><li><a class="active" href="{{url('/following')}}">متابعاتي </a></li>
                                 <li>
-                                    <a class="active" href="Zad_follow.php">متابعاتي </a>
-                                </li>
-                                <li>
-                                    <a class="active" href="Zad_new.php">جديد اليوم </a>
+                                    <a class="active" href="{{url('/today')}}">جديد اليوم </a>
                                 </li>
 
                                 <li>
-                                    <a href="Zad_End.php">ستنتهي اليوم </a>
+                                    <a href="{{url('/ending_today')}}">ستنتهي اليوم </a>
                                 </li>
 
                                 <li>
-                                    <a href="Zad_chance.php"> الفرصة الاخيرة</a>
+                                    <a href="{{url('/last_chance')}}"> الفرصة الاخيرة</a>
                                 </li>
                                 <li>
-                                    <a href="Zad_BuyNow.php">اشتر الآن</a>
+                                    <a href="{{url('/buy_now')}}">اشتر الآن</a>
                                 </li>
                                 <li>
-                                    <a href="Most_Bid.php">الاكثر مزايدة</a>
+                                    <a href="{{url('/most_bid')}}">الاكثر مزايدة</a>
                                 </li>
                             </ul>
 

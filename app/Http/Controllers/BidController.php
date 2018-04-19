@@ -9,24 +9,23 @@ use Auth;
 
 class BidController extends Controller{
     function bid(Request $request){
-        return addBid($request->auction_id, $request->max_price);
+        return $this->addBid($request->auction_id, $request->price);
     }
 
-    function getHeighestBid($auctionId){    
-        return Bid::where('auction_id',$auctionId)->max('price')->get();
+    function getHeighestBid($auctionId){
+        return Bid::where('auction_id',$auctionId)->max('price');
     }
     
     function addBid($auctionId,$maxPrice){
-        
         $auction = Auction::find($auctionId);
-        $heighestBid = getHeighestBid($auction['id']);
-    
+        $heighestBid = $auction->heighest_bid();//$this->getHeighestBid($auction['id']);
+        
         $min_increment = $auction['min_increment'];
     
         $userId = Auth::user()->id;
         
         if(is_null($heighestBid['price'])){
-            $currentBid = $auction['price'];
+            $currentBid = $auction['start_price'];
             Bid::create([
                 'user_id'=>$userId,
                 'auction_id'=>$auctionId,
@@ -43,8 +42,6 @@ class BidController extends Controller{
             $new['user_id'] = $userId;
             $current = $new;
             $other = $old;
-    
-            
             
             while($new['max_price'] > $currentBid  && $old['max_price'] > $currentBid){
                 $temp = $current;

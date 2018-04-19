@@ -21,6 +21,7 @@ class CreateItem extends Migration
             $table->string('description');
             $table->double('buy_now');
             $table->boolean('status');
+            $table->boolean('sold')->default(false);
             $table->string('pay_method');
             $table->string('ship_method');
             $table->longtext('photos')->nullable();

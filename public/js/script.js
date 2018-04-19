@@ -1,6 +1,5 @@
 
 function searchItems(needle,callback){
-  console.log("Here Here");
   var xhr = new XMLHttpRequest();
   
   xhr.onreadystatechange = function() {

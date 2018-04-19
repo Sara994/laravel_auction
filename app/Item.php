@@ -14,7 +14,7 @@ class Item extends Model
      * @var array
      */
     protected $fillable = [
-        'title','subtitle','description','buy_now','status','pay_method', 'ship_method','photos','category_id','seller_id','auction_id','city_id'
+        'title','subtitle','description','buy_now','status','pay_method', 'ship_method','photos','category_id','seller_id','auction_id','city_id','sold'
     ];
 
     public function category(){
@@ -22,10 +22,10 @@ class Item extends Model
     }
 
     function seller(){
-        return $this->hasOne('App\User','id');
+        return $this->hasOne('App\User','id','seller_id');
     }
     function auction(){
-        return $this->hasOne('App\Auction','id');
+        return $this->hasOne('App\Auction','id','auction_id');
     }
     function city(){
         return $this->hasOne('App\city','id');
