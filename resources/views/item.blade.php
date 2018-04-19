@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @extends('layouts.app')
 @section('content')
 <div style="display: flex">
@@ -50,5 +49,3 @@
     </div>
 </div>
 @endsection
-=======
->>>>>>> 416d2c2d5278fc3b8c0f08046dfe411ae18a3129
