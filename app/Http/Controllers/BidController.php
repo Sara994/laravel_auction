@@ -15,6 +15,10 @@ class BidController extends Controller{
     function getHeighestBid($auctionId){
         return Bid::where('auction_id',$auctionId)->max('price');
     }
+
+    function getItemId($auctionId){
+        return Item::where('auction_id',$auctionId)->id;
+    }
     
     function addBid($auctionId,$maxPrice){
         $auction = Auction::find($auctionId);
@@ -60,6 +64,6 @@ class BidController extends Controller{
                 $current['price'] = $other['price'] + $min_increment;
             }
         }
-        return true;
+        return redirect('item/'. $this->getItemId($auctionId));
     }
 }
