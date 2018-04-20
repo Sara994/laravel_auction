@@ -7,7 +7,7 @@ function searchItems(needle,callback){
       callback(JSON.parse(this.responseText));
     }
   };
-  xhr.open('get','item/search/'+needle,true);
+  xhr.open('get','/item/search/'+needle,true);
   xhr.send();
 }
 
