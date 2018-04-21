@@ -9,30 +9,29 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item active" href="Zad_details.php">
-                <img class="d-block" src="img/lab.jpg" alt="First slide">
+            @foreach( $featured_items as $item)
+                <a class="carousel-item {{$loop->first ? 'active':''}}" href="{{url('item/'.$item->id)}}">
+                    <div style="position:relative">
+                        @if(count($item->photos())>0)
+                            <img class="d-block" src="{{url($item->photos()[0])}}">
+                        @else
+                            <img class="d-block" src="{{asset('img/placeholder.gif')}}">
+                        @endif
 
-                <div style="margin:0 10px">
-                    <div>لابتوب</div>
-                    <button class="btn btn-default">اشتر الآن</button>
-                </div>
-            </div>
-            <div class="carousel-item" href="Zad_details.php">
-                <img class="d-block" src="img/bag.jpg" alt="Second slide">
 
-                <div style="margin:0 10px">
-                    <div>حقيبة</div>
-                    <button class="btn btn-default">اشتر الآن</button>
-                </div>
-            </div>
-            <div class="carousel-item" href="Zad_details.php">
-                <img class="d-block" src="img/k.png" alt="Third slide">
-
-                <div style="margin:0 10px">
-                    <div>شنطة</div>
-                    <button class="btn btn-default">اشتر الآن</button>
-                </div>
-            </div>
+                        <div class="carousel-link">
+                            <div>{{$item->title}}</div>
+                            @if($item->auction)
+                                <div id="counter_{{$loop->index}}"></div>
+                                <script>count_down('counter_'+{{$loop->index}},'{{$item->auction->end_time}}')</script>
+                            @else
+                                <button class="btn btn-default">اشتر الآن</button>
+                            @endif
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+            
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -44,25 +43,17 @@
         </a>
     </div>
 </section>
+
+@foreach([1,2] as $categoryId)
 <section class="furniture">
-    <h3 style="padding-right:2%">أثاث</h3>
+    <h3 style="padding-right:2%">{{App\ItemCategory::find($categoryId)->title}}</h3>
     <div style="display:flex;justify-content:space-around">
-        <div class="furniture_item">
-            <img src="{{asset('img/th.jpg')}}" height="100" style=" margin:10px 10px 0px 20px">
-        </div>
-        <div class="furniture_item">
-            <img src="{{asset('img/k.png')}}" height="100" style="margin:10px 10px 0px 20px">
-        </div>
-        <div class="furniture_item">
-            <img src="{{asset('img/tt.jpg')}}" height="100" style="margin:10px 10px 0px 20px">
-        </div>
-        <div class="furniture_item">
-            <img src="{{asset('img/knb.jpg')}}" height="100" style="margin:10px 10px 0px 20px">
-        </div>
-        <div class="furniture_item">
-            <img src="{{asset('img/abj.jpg')}}" height="100" style="margin:10px 10px 0px 20px">
-        </div>
+        @foreach(App\Item::where('category_id',$categoryId)->orderBy('created_at','desc')->limit(5)->get() as $item)
+            <div class="furniture_item">
+                <img src="{{count($item->photos()) > 0 ? $item->photos()[0]:url('/img/placeholder.gif')}}" height="100" style="padding:10px">
+            </div>
+        @endforeach
     </div>
 </section>
-
+@endforeach
 @endsection

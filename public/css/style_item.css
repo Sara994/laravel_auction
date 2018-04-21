@@ -277,7 +277,7 @@ body {
 }
 .carousel img{
     height:50vh;
-    width:30%; /*auto */
+    width:auto;
 }
 .boot .carousel-item.active{
     display:flex;
@@ -404,7 +404,25 @@ input[type=submit] {
   color: #ffffff; 
 }
 
+.d-block{
+    width:initial;
+    height:50vh;
+    min-width:30%;
+    position:relative;
+    background-color: rgba(255,255,255,0.73);
+}
 
+.active .carousel-link{
+    color:inherit;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    position:absolute;
+    bottom:15%;
+    background-color:rgba(0,0,0,0.2);
+    margin:0;
+    width:100%;
+}
 /**************************
 END AUTOCOMPLETE CSS
 ***************************/

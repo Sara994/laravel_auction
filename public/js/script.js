@@ -109,3 +109,18 @@ function autocomplete(inp, arr) {
       closeAllLists(e.target);
       });
 }
+
+
+function count_down(elem_id,end_date){
+  var end_time = new Date(end_date);
+  setInterval(() => {
+      var diff = end_time - new Date();
+      var seconds = parseInt(diff/1000)%60;
+      var minutes = parseInt(diff/60000)%60;
+      var hours = parseInt(diff/3600000)%24;
+      var days = parseInt(diff / (60 * 60 * 1000 * 24));
+      
+      document.getElementById(elem_id).innerText = days + ":" + hours +":" + minutes + ":" + seconds;
+  }, 1000,0);
+}
+

@@ -28,6 +28,16 @@ class DatabaseSeeder extends Seeder
             'last_name'=>'Alsoghayer',
             'city_id'=>1            
         ]);
+        User::create([
+            'username'=>'Maram',
+            'email'=>'mrm@asd.com',
+            'password'=>bcrypt('123123123'),
+            'phone'=>'05300123123',
+            'postcode'=>'123331',
+            'first_name'=>'Maram',
+            'last_name'=>'m',
+            'city_id'=>2    
+        ]);
         ItemCategory::create([
             'title'=>'Electronics'
         ]);
@@ -45,7 +55,7 @@ class DatabaseSeeder extends Seeder
             'ship_method'=>"FedEX",
             "photos"=>"[]",
             "category_id"=>2,
-            "seller_id"=>1,
+            "seller_id"=>2,
             "city_id"=>2
         ]);
 

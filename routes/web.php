@@ -15,13 +15,14 @@ use App\ItemCategory;
 //use Auth;
 
 Route::get('/', function () {
-    return view('welcome');
+    $featured_items = App\Item::orderBy('created_at','desc')->limit(12)->get();
+    return view('welcome',['featured_items'=>$featured_items]);
 });
 
 Route::group(['prefix'=>'item'],function(){
     Route::get('/search/{needle}','ItemController@search');
     Route::get('/{id}','ItemController@show');
-    Route::post("/{id}/bid",'BidController@bid');
+    Route::post("/{id}/bid",'BidController@bid')->middleware('auth');
 });
 
 Route::get('/bid',function(){ return view('item/bid');});
@@ -31,16 +32,16 @@ Route::group(['prefix'=>'user'],function(){
         $user = Auth::user();
         return view('user/profile',['user'=> $user]);
     });
-    Route::post('profile','UserController@update')->name('userprofile');
+    Route::post('profile','UserController@update')->name('userprofile')->middleware('auth');
     Route::get('new_item',function(){
         $categories = ItemCategory::all();
         return view('user/new_item',['categories'=>$categories]);
-    });
+    })->middleware('auth');
 
-    Route::post('/new_item','ItemController@create');
+    Route::post('/new_item','ItemController@create')->middleware('auth');
     Route::get('/bids',function(){ return view('user/bids');});
     
-    Route::get('/new_auction',function(){ return view('user/new_auction');});
+    Route::get('/new_auction',function(){ return view('user/new_auction');})->middleware('auth');
     Route::get('/items',function(){ return view('user/items');});
     Route::get('/reviews',function(){ return view('user/reviews');});
 });

@@ -32,10 +32,10 @@
 <body style="display:flex;flex-direction:column;min-height:100vh">
     <header class="navbar" style="max-height:15vh">
         <div style="display:flex; margin:0 5px">
-            <img src="{{asset('img/logo.png')}}" alt="HTML5 Icon" style="max-height: 10vh;align-self:center">
+            <a href="{{url('/')}}"><img src="{{asset('img/logo.png')}}" alt="HTML5 Icon" style="max-height: 10vh;align-self:center"></a>
         </div>
 
-        <h2 style="flex:1; align-self:center"> زاد+ </h2>
+        <h2 style="flex:1; align-self:center"><a style="text-decoration:none;color:inherit" href="{{url('/')}}"> زاد+ </a></h2>
         @guest
         <!-- <a style="align-self: center;padding:0 20px" href="{{url('login')}}"> تسجيل دخول</a>
         <a style="align-self: center;padding:0 20px" href="{{url('register')}}">تسجيل</a>

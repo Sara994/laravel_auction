@@ -25,10 +25,24 @@ class Auction extends Model
         return $heighest + $this->min_increment;
     }
 
+    function isExpired(){
+        return strtotime($this->end_time) < time();
+    }
+
+    function bids(){
+        return $this->hasMany('App\Bid','auction_id');
+    }
+
     function heighest_bid(){
-        $heighest = Bid::where('auction_id',$this->id)->max('price');
-        if(is_null($heighest))
-            return $this->start_price;
+        $allbids = Bid::where('auction_id',$this->id)->get();
+
+        $heighest = null;
+        foreach($allbids as $bid){
+            if(!isset($heighest) || $bid['price'] > $heighest['price']){
+                $heighest = $bid;
+            }
+        }
+        
         return $heighest;
     }
 }
