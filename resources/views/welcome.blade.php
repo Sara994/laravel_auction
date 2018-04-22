@@ -44,14 +44,11 @@
     </div>
 </section>
 
-@foreach([1,9,14,19,20] as $categoryId)
+@foreach([1] as $categoryId)
 <section class="furniture">
     <h3 style="padding-right:2%">{{App\ItemCategory::find($categoryId)->title}}</h3>
     <div class="row" style="display:flex;justify-content:space-around">
         @foreach(App\Item::where('category_id',$categoryId)->orderBy('created_at','desc')->limit(5)->get() as $item)
-            {{-- <div class="furniture_item">
-                <img src="{{count($item->photos()) > 0 ? $item->photos()[0]:url('/img/placeholder.gif')}}" height="100" style="padding:10px">
-            </div> --}}
             <div class="card-container">
                 <div class="card">
                     <div class="front">
@@ -95,8 +92,5 @@
     <a style="padding-right:1% float:right" href="{{url('category/' . $categoryId)}}">مشاهدة المزيد</a>
 </section>
 @endforeach
-
-
-</section>
 
 @endsection

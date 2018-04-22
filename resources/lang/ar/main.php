@@ -21,6 +21,10 @@ return [
     'remember_me'=>'تذكرني',
     'forgot_my_password'=>'نسيت كلمة المرور',
     'password_confirm'=>'تأكيد كلمة المرور',
-    'name'=>'الاسم'
+    'name'=>'الاسم',
+    'first_name'=>'الاسم الأول',
+    'last_name'=>'اسم العائلة',
+    'phone'=>'رقم الجوال',
+    'username'=>'اسم المستخدم'
     
 ];
