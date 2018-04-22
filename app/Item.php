@@ -36,4 +36,11 @@ class Item extends Model
     function specs(){
         return $this->hasMany('App\ItemSpec','item_id');
     }
+    function transaction(){
+        return $this->hasOne('App\ItemTransaction','id');
+    }
+    function isActive(){
+        $trans = ItemTransaction::where('item_id',$this->id)->get();
+        return count($trans) == 0;
+    }
 }

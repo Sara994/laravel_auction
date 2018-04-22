@@ -13,6 +13,7 @@
 use Intervention\Image\ImageServiceProvider;
 use App\ItemCategory;
 use App\City;
+use App\Item;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -38,6 +39,12 @@ Route::group(['prefix'=>'item'],function(){
     Route::get('/search/{needle}','ItemController@search');
     Route::get('/{id}','ItemController@show');
     Route::post("/{id}/bid",'BidController@bid')->middleware('auth');
+    Route::post("/confirm/{id}",'ItemController@buy')->middleware('auth');
+
+    Route::get("/confirm/{id}",function($itemId){
+        $item = Item::find($itemId);
+        return view('/item/confirm',['item'=>$item]);
+    })->middleware('auth');
 });
 
 Route::get('/bid',function(){ return view('item/bid');});

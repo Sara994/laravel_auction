@@ -11,7 +11,6 @@ use Log;
 use DB;
 
 class ItemController extends Controller{
-
     function create(Request $request){
         $fields = $request->except(['photos','end_time','start_price','min_increment']);
         $fields['seller_id'] = Auth::user()->id;
@@ -22,10 +21,7 @@ class ItemController extends Controller{
                 $extraFields[$field] = $fields['spec_value_' . substr($index,9)];
             }
         }
-
-
-
-
+        
         if($request->end_time && $request->min_increment && $request->start_price){
             $auction = Auction::create([
                 'start_time'=>date("Y-m-d H:i:s"),
@@ -77,5 +73,25 @@ class ItemController extends Controller{
     function search($needle){
         $items = Item::where('title','like',"%$needle%")->get();
         return json_encode($items);
+    }
+
+    function buy(Request $request){
+        $item = Item::find($request->item_id);
+        if(isset($item->auction) || !$item->isActive()){
+            abort(500,'Item is not for sale');
+        }
+        if($request->price != $item->buy_now){
+            abort(500,'Price doesnt match');
+        }
+
+        ItemTransaction::create([
+            'item_id'=>$item->id,
+            'user_id'=>Auth::user()->id,
+            'price'=>$item->buy_now,
+            'name'=>$request->name,
+            'phone'=>$request->phone
+        ]);
+
+        return redirect('/item/'.$item->id);
     }
 }

@@ -50,7 +50,7 @@
     <div class="row" style="display:flex;justify-content:space-around">
         @foreach(App\Item::where('category_id',$categoryId)->orderBy('created_at','desc')->limit(5)->get() as $item)
             <div class="card-container">
-                <div class="card">
+                <div class="card" onclick="window.location = '{{'/item/' . $item->id}}'">
                     <div class="front">
                         <div class="cover">
                             <img src="{{count($item->photos()) > 0 ? $item->photos()[0]:url('/img/placeholder.gif')}}" style="max-height;100%;max-width:100%;">
