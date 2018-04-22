@@ -128,6 +128,7 @@
             <ul class="mainmenu">
 
                 <li><a href="{{url('user/profile')}}"><span class ="fa fa-user"></span> معلومات الشخصية</a></li>  
+                <li><a href="{{url('user/items')}}"><span class ="fa fa-user"></span>منتجاتي</a></li>  
 
                 <li><a href="#"><span class="fas fa-gavel"></span>مزاداتي</a>
 

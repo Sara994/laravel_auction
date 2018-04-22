@@ -94,4 +94,20 @@ class ItemController extends Controller{
 
         return redirect('/item/'.$item->id);
     }
+
+    function myItems(){
+        $items = Item::where('seller_id',Auth::user()->id)->orderby('created_at','desc')->get();
+        return view('/user/items',['items'=>$items]);
+    }
+
+    function delete($itemId){
+        $item = Item::find($itemId);
+        if($item->seller->id != Auth::user()->id || !$item->isActive()){
+            abort('403','UnAuthorized Access');
+        }
+
+        $item->delete();
+
+        return redirect('user/items');
+    }
 }
