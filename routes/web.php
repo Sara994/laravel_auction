@@ -76,24 +76,93 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/add',function(){
-    $riyadh = City::find(1);
-    $riyadh->update(['name'=>'الرياض']);
-    $jeddah = City::find(2);
-    $jeddah->update(['name'=>'جده']);
-    
-    City::create(['name'=>'الدمام']);
-    City::create(['name'=>'مكة المكرمة']);
-    City::create(['name'=>'أبها']);
-    City::create(['name'=>'الخبر']);
-    City::create(['name'=>'المدينة المنورة']);
-    City::create(['name'=>'ينبع']);
-    City::create(['name'=>'رابغ']);
-    City::create(['name'=>'بريدة']);
-    City::create(['name'=>'عنيزة']);
-    City::create(['name'=>'الظهران']);
-    City::create(['name'=>'تبوك']);
-    City::create(['name'=>'عرعر']);
-    City::create(['name'=>'الجوف']);
-    City::create(['name'=>'الخبر']);
+    $electronics = ItemCategory::find(1);
+    $electronics->update(['title'=>'الإلكترونيات']);
+    $computers = ItemCategory::find(2);
+    $computers->update(['title'=>'حاسوب مكتبي']);
 
+    ItemCategory::create([
+        'title'=>'لابتوب',
+        'parent_id'=>$electronics->id
+    ]);
+    
+    ItemCategory::create([
+        'title'=>'ايباد',
+        'parent_id'=>$electronics->id
+    ]);
+    ItemCategory::create([
+        'title'=>'كاميرا',
+        'parent_id'=>$electronics->id
+    ]);
+    ItemCategory::create([
+        'title'=>'جوال',
+        'parent_id'=>$electronics->id
+    ]);
+    ItemCategory::create([
+        'title'=>'تلفزيون',
+        'parent_id'=>$electronics->id
+    ]);
+    ItemCategory::create([
+        'title'=>'أخرى',
+        'parent_id'=>$electronics->id
+    ]);
+
+    $furniture = ItemCategory::create([
+        'title'=>'أثاث'
+    ]);
+
+    ItemCategory::create([
+        'title'=>'طاولة',
+        'parent_id'=>$furniture->id
+    ]);
+    ItemCategory::create([
+        'title'=>'كرسي',
+        'parent_id'=>$furniture->id
+    ]);
+    ItemCategory::create([
+        'title'=>'أطقم كنب',
+        'parent_id'=>$furniture->id
+    ]);
+    ItemCategory::create([
+        'title'=>'أخرى',
+        'parent_id'=>$furniture->id
+    ]);
+
+    $access = ItemCategory::create([
+        'title'=>'الأزياء والاكسسوارات'
+    ]);
+
+    ItemCategory::create([
+        'title'=>'حقائب',
+        'parent_id'=>$access->id
+    ]);
+
+    ItemCategory::create([
+        'title'=>'مجوهرات',
+        'parent_id'=>$access->id
+    ]);
+    ItemCategory::create([
+        'title'=>'أحذية',
+        'parent_id'=>$access->id
+    ]);
+    ItemCategory::create([
+        'title'=>'أخرى',
+        'parent_id'=>$access->id
+    ]);
+
+    $cars = ItemCategory::create([
+        'title'=>'سيارات'
+    ]);
+    $anti = ItemCategory::create([
+        'title'=>'أثريات'
+    ]);
+
+    ItemCategory::create([
+        'title'=>'لوحات',
+        'parent_id'=>$anti->id
+    ]);
+    ItemCategory::create([
+        'title'=>'أخرى',
+        'parent_id'=>$anti->id
+    ]);
 });
