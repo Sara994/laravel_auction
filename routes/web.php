@@ -16,8 +16,19 @@ use App\City;
 //use Auth;
 
 Route::get('/', function () {
-    $featured_items = App\Item::orderBy('created_at','desc')->limit(12)->get();
-    return view('welcome',['featured_items'=>$featured_items]);
+    $featured_items = App\Item::orderBy('created_at','desc')->limit(30)->get();
+    $items = [];
+    foreach($featured_items as $item){
+        if(!is_null($item->auction)){
+            if(! $item->auction->isExpired())
+                $items[] = $item;
+        }else{
+            $items[] = $item;
+        }
+    }
+    $items = array_slice($items,0,12);
+
+    return view('welcome',['featured_items'=>$items]);
 });
 
 Route::group(['prefix'=>'item'],function(){
@@ -66,103 +77,12 @@ Route::get('buy_now',function(){
 });
 Route::get('most_bid',function(){return view('items',['items'=>[]]);});
 
-
-Route::get('photos/{filename}', function ($filename)
-{
+Route::get('photos/{filename}', function ($filename){
     return Image::make(storage_path('app/photos/' . $filename))->response();
 });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/add',function(){
-    $electronics = ItemCategory::find(1);
-    $electronics->update(['title'=>'الإلكترونيات']);
-    $computers = ItemCategory::find(2);
-    $computers->update(['title'=>'حاسوب مكتبي']);
-
-    ItemCategory::create([
-        'title'=>'لابتوب',
-        'parent_id'=>$electronics->id
-    ]);
-    
-    ItemCategory::create([
-        'title'=>'ايباد',
-        'parent_id'=>$electronics->id
-    ]);
-    ItemCategory::create([
-        'title'=>'كاميرا',
-        'parent_id'=>$electronics->id
-    ]);
-    ItemCategory::create([
-        'title'=>'جوال',
-        'parent_id'=>$electronics->id
-    ]);
-    ItemCategory::create([
-        'title'=>'تلفزيون',
-        'parent_id'=>$electronics->id
-    ]);
-    ItemCategory::create([
-        'title'=>'أخرى',
-        'parent_id'=>$electronics->id
-    ]);
-
-    $furniture = ItemCategory::create([
-        'title'=>'أثاث'
-    ]);
-
-    ItemCategory::create([
-        'title'=>'طاولة',
-        'parent_id'=>$furniture->id
-    ]);
-    ItemCategory::create([
-        'title'=>'كرسي',
-        'parent_id'=>$furniture->id
-    ]);
-    ItemCategory::create([
-        'title'=>'أطقم كنب',
-        'parent_id'=>$furniture->id
-    ]);
-    ItemCategory::create([
-        'title'=>'أخرى',
-        'parent_id'=>$furniture->id
-    ]);
-
-    $access = ItemCategory::create([
-        'title'=>'الأزياء والاكسسوارات'
-    ]);
-
-    ItemCategory::create([
-        'title'=>'حقائب',
-        'parent_id'=>$access->id
-    ]);
-
-    ItemCategory::create([
-        'title'=>'مجوهرات',
-        'parent_id'=>$access->id
-    ]);
-    ItemCategory::create([
-        'title'=>'أحذية',
-        'parent_id'=>$access->id
-    ]);
-    ItemCategory::create([
-        'title'=>'أخرى',
-        'parent_id'=>$access->id
-    ]);
-
-    $cars = ItemCategory::create([
-        'title'=>'سيارات'
-    ]);
-    $anti = ItemCategory::create([
-        'title'=>'أثريات'
-    ]);
-
-    ItemCategory::create([
-        'title'=>'لوحات',
-        'parent_id'=>$anti->id
-    ]);
-    ItemCategory::create([
-        'title'=>'أخرى',
-        'parent_id'=>$anti->id
-    ]);
-});
+Route::get('/add',function(){});
