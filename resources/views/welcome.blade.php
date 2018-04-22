@@ -44,7 +44,7 @@
     </div>
 </section>
 
-@foreach([1] as $categoryId)
+@foreach([1,9,14,19,20] as $categoryId)
 <section class="furniture">
     <h3 style="padding-right:2%">{{App\ItemCategory::find($categoryId)->title}}</h3>
     <div class="row" style="display:flex;justify-content:space-around">

@@ -15,7 +15,7 @@
 <div style="font-size:1.25rem">
     <h3>هذا المنتج تم يبعه</h3>
     <h3> تهانينا .. 
-        <a href="{{url('/user/'.$item->auction->heighest_bid()->user->id)}}">
+        <a href="{{url('/user/'.$item->transaction->user->id)}}">
             {{$item->transaction->user->username}}
         </a>
     </h3>
