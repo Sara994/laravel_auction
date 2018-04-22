@@ -12,7 +12,7 @@
             @foreach( $featured_items as $item)
                 <a class="carousel-item {{$loop->first ? 'active':''}}" href="{{url('item/'.$item->id)}}">
                     <div style="position:relative">
-                        @if(count($item->photos())>0)
+                        @if(is_array($item->photos()) && count($item->photos())>0)
                             <img class="d-block" src="{{url($item->photos()[0])}}">
                         @else
                             <img class="d-block" src="{{asset('img/placeholder.gif')}}">
