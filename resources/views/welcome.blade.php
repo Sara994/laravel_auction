@@ -47,80 +47,80 @@
 @foreach([1,2] as $categoryId)
 <section class="furniture">
     <h3 style="padding-right:2%">{{App\ItemCategory::find($categoryId)->title}}</h3>
-    <div style="display:flex;justify-content:space-around">
+    <div class="row" style="display:flex;justify-content:space-around">
         @foreach(App\Item::where('category_id',$categoryId)->orderBy('created_at','desc')->limit(5)->get() as $item)
-            <div class="furniture_item">
+            {{-- <div class="furniture_item">
                 <img src="{{count($item->photos()) > 0 ? $item->photos()[0]:url('/img/placeholder.gif')}}" height="100" style="padding:10px">
+            </div> --}}
+            <div class="card-container">
+                <div class="card">
+                    <div class="front">
+                        <div class="cover">
+                            <img src="{{count($item->photos()) > 0 ? $item->photos()[0]:url('/img/placeholder.gif')}}" style="max-height;100%;max-width:100%;">
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 class="name">{{$item->title}}</h3>
+                                <div class="first float_left">
+                                    <p style="text_align: center">الشركة: <b>سوني  </b></p>
+                                </div>
+                                <div class="second float_left">
+                                <p style="text_align: center">المعالج: intel corei7 </p>
+                                </div>            
+                                <div class="second">
+                                    <span class="icon_gearbox"></span><gearbox>
+                                </div>
+                            </div>
+                            <div class="price">
+                                <div style="font-size:1.25rem">
+                                    @if(!is_null($item->auction))
+                                        <p style="font-size:1.25rem">الوقت المتبقي :<span id="timer_{{$item->id}}"></span></p>
+                                    @else
+                                        <p style="font-size:1.25rem">السعر:   {{$item->buy_now}} رس</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end front panel -->
+                    <div class="back">
+                        <p>
+                        <label class="title">النوع: </label>
+                        <span class="value">انتل كور i5‎‎-‎7200‎U‎</span>
+                        </p>
+                        <p>
+                        <label class="title">النوع:</label>
+                        <span class="value">تاتت</span>
+                        </p>
+                            <p>
+                            <label class="title">النوع:</label>
+                            <span class="value">تاتت</span>
+                        </p>
+                        <p>
+                        <label class="title">النوع:</label>
+                        <span class="value">تاتت</span>
+                        </p>
+                        <p>
+                        <label class="title">النوع:</label>
+                        <span class="value">تاتت</span>
+                        </p>
+                        <p>
+                        <label class="title">كرت الشاشة:</label>
+                        <span class="value">انتل جي ام ايه عالى الدقة‎</span>
+                        </p>
+                        <p>
+                        <label class="title">النوع:</label>
+                        <span class="value">تاتت</span>
+                        </p>
+                    </div> <!-- end back panel -->
+                </div> <!-- end card -->
             </div>
         @endforeach
     </div>
-</section>
-
-
-<section class="Antique">
-    <h3 style="padding-right:2%">آثريات</h3>
-        <div class="card">
-            <div class="front">
-                <div class="cover">
-                <img src="{{asset('img/lenovo.png')}}" height="190" width="290">
-                </div>
-                <div class="content">
-                    <div class="main">
-
-                        <h3 class="name">lenovo</h3>
-                        <div class="first float_left">
-                            <p style="text_align: center">الشركة: <b>سوني  </b></p>
-                        </div>
-                        <div class="second float_left">
-                        <p style="text_align: center">المعالج: intel corei7 </p>
-                        </div>            
-                        <div class="second">
-                            <span class="icon_gearbox"></span><gearbox>
-                        </div>
-                    </div>
-                    <div class="price">
-                    <div style="font-size:1.25rem">
-    <p style="font-size:1.25rem">الوقت المتبقي :س</p>
-    <p style="font-size:1.25rem">السعر:   560 رس</p>
-                    </div>
-                    </div> 
-                </div>
-            </div> <!-- end front panel -->
-            <div class="back">              
-                <p>
-                <label class="title">النوع: </label>
-                <span class="value">انتل كور i5‎‎-‎7200‎U‎</span>
-                </p>
-                <p>
-                <label class="title">النوع:</label>
-                <span class="value">تاتت</span>
-                </p>
-                    <p>
-                    <label class="title">النوع:</label>
-                    <span class="value">تاتت</span>
-                </p>
-                <p>
-                <label class="title">النوع:</label>
-                <span class="value">تاتت</span>
-                </p>
-                <p>
-                <label class="title">النوع:</label>
-                <span class="value">تاتت</span>
-                </p>
-                <p>
-                <label class="title">كرت الشاشة:</label>
-                <span class="value">انتل جي ام ايه عالى الدقة‎</span>
-                </p>
-                <p>
-                <label class="title">النوع:</label>
-                <span class="value">تاتت</span>
-                </p>               
-            </div> <!-- end back panel -->
-        </div> <!-- end card -->
-    </div> <!-- end card-container -->
-
-<a href="#" style="padding-right:1% float:right" href="item.php">مشاهدة المزيد</a>
-        
+    <a style="padding-right:1% float:right" href="{{url('category/' . $categoryId)}}">مشاهدة المزيد</a>
 </section>
 @endforeach
+
+
+</section>
+
 @endsection

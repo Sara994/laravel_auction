@@ -13,6 +13,9 @@
 use Intervention\Image\ImageServiceProvider;
 use App\ItemCategory;
 use App\City;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 //use Auth;
 
 Route::get('/', function () {
@@ -85,4 +88,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/add',function(){});
+Route::get('/add',function(){
+    Schema::create('item_spec',function(Blueprint $table){
+        $table->increments('id');
+        $table->unsignedinteger('item_id');
+        $table->string('spec_key');
+        $table->string('spec_value');
+        $table->timestamps();
+
+        $table->foreign('item_id')->references('id')->on('item');
+    });
+});
