@@ -84,7 +84,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="postcode" class="col-md-4 col-form-label text-md-right">{{ __('Postcode') }}</label>
+                            <label for="postcode" class="col-md-4 col-form-label text-md-right">الرمز البريدي</label>
 
                             <div class="col-md-6">
                                 <input id="postcode" type="text" class="form-control{{ $errors->has('postcode') ? ' is-invalid' : '' }}" name="postcode" value="{{ $user->postcode }}" required autofocus>
