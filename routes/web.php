@@ -12,6 +12,7 @@
 */
 use Intervention\Image\ImageServiceProvider;
 use App\ItemCategory;
+use App\City;
 //use Auth;
 
 Route::get('/', function () {
@@ -73,3 +74,26 @@ Route::get('photos/{filename}', function ($filename)
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/add',function(){
+    $riyadh = City::find(1);
+    $riyadh->update(['name'=>'الرياض']);
+    $jeddah = City::find(2);
+    $jeddah->update(['name'=>'جده']);
+    
+    City::create(['name'=>'الدمام']);
+    City::create(['name'=>'مكة المكرمة']);
+    City::create(['name'=>'أبها']);
+    City::create(['name'=>'الخبر']);
+    City::create(['name'=>'المدينة المنورة']);
+    City::create(['name'=>'ينبع']);
+    City::create(['name'=>'رابغ']);
+    City::create(['name'=>'بريدة']);
+    City::create(['name'=>'عنيزة']);
+    City::create(['name'=>'الظهران']);
+    City::create(['name'=>'تبوك']);
+    City::create(['name'=>'عرعر']);
+    City::create(['name'=>'الجوف']);
+    City::create(['name'=>'الخبر']);
+
+});
