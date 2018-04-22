@@ -124,3 +124,54 @@ function count_down(elem_id,end_date){
   }, 1000,0);
 }
 
+function addNewSpec(){
+  console.log('sdfsdfsfd');
+  $('[data-id="specs_row"]').each(function(idx,i){
+    var next_index = i.children.length;
+    var row = document.createElement('div');
+    row.id = 'spec_row_' + Math.floor(Math.random() * 1000000);
+    row.classList = "row";
+
+    var col1 = document.createElement('div');
+    
+    var col2 = document.createElement('div');
+    var col3 = document.createElement('div');
+    row.appendChild(col1);
+    row.appendChild(col2);
+    row.appendChild(col3);
+
+    col1.classList = "col";
+    col2.classList = "col";
+    col3.classList = "col";
+
+    var random = Math.floor(Math.random() * 1000);
+
+    var inp1 = document.createElement('input');
+    inp1.name = 'spec_key_' + random;
+    var inp2 = document.createElement('input');
+    inp2.name = 'spec_value_' + random;
+    var but = document.createElement('button');
+
+    col1.appendChild(inp1);
+    col2.appendChild(inp2);
+    col3.appendChild(but);
+
+    inp1.placeholder = "اسم الخيار";
+    inp2.placeholder = "اسم الخيار";
+    inp1.classList = "form-control";
+    inp2.classList = "form-control";
+    inp1.required = "required";
+    inp2.required = "required";
+    
+    but.type="button";
+    but.classList = "btn btn-danger";
+  
+    but.innerText= "حذف";
+    but.addEventListener('click',function(){
+      $('#'+row.id).remove();
+    });
+
+    i.appendChild(row);
+  })
+}
+

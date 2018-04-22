@@ -69,7 +69,7 @@
 
         <div class="form-group">
             <lable for="photos[]">ارفاق الصور:* </lable>
-            <input class="form-control" type="file"  name='photos[]' style="text-align:right;">             
+            <input multiple="true" class="form-control" type="file"  name='photos[]' style="text-align:right;">             
         </div>
         <div class="form-group">
             <lable for="ship_method">طريقة التوصيل:* </lable>
@@ -80,6 +80,13 @@
             <input class="form-control" type="text"  name='pay_method' value="" style="text-align:right;">
         </div>
 
+        <div class="form-group" data-id="specs_row" >
+            <div>
+                <lable>خيارات إضافية:* </lable>
+                <button onClick="addNewSpec()" type="button"><img src={{asset('img/plus.svg')}}> إضافة خيار جديد </button>
+            </div>
+        </div>
+        
         <input class="form-control" type="submit"  value="تنفيذ" style="margin:10px auto">
     </form>
 </div>

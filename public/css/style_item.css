@@ -427,7 +427,7 @@ END AUTOCOMPLETE CSS
 /* Style */
 
 body {
-    margin-top: 60px;
+    
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #E5E9ED;
@@ -607,4 +607,11 @@ body {
 
 .card p {
     line-height: 25px;
+}
+.card-spec{
+    display: flex;
+    justify-content: space-around;
+}
+.card-spec label{
+    font-weight: bold;
 }

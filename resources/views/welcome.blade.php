@@ -61,15 +61,12 @@
                         <div class="content">
                             <div class="main">
                                 <h3 class="name">{{$item->title}}</h3>
-                                <div class="first float_left">
-                                    <p style="text_align: center">الشركة: <b>سوني  </b></p>
+                                @foreach($item->specs->slice(0,2) as $spec)
+                                <div class="row card-spec text-center">
+                                    <label class="col-5">{{$spec->spec_key}}:</label>
+                                    <span class="col-5">{{$spec->spec_value}}  </span>
                                 </div>
-                                <div class="second float_left">
-                                <p style="text_align: center">المعالج: intel corei7 </p>
-                                </div>            
-                                <div class="second">
-                                    <span class="icon_gearbox"></span><gearbox>
-                                </div>
+                                @endforeach
                             </div>
                             <div class="price">
                                 <div style="font-size:1.25rem">
@@ -83,34 +80,13 @@
                         </div>
                     </div> <!-- end front panel -->
                     <div class="back">
-                        <p>
-                        <label class="title">النوع: </label>
-                        <span class="value">انتل كور i5‎‎-‎7200‎U‎</span>
-                        </p>
-                        <p>
-                        <label class="title">النوع:</label>
-                        <span class="value">تاتت</span>
-                        </p>
-                            <p>
-                            <label class="title">النوع:</label>
-                            <span class="value">تاتت</span>
-                        </p>
-                        <p>
-                        <label class="title">النوع:</label>
-                        <span class="value">تاتت</span>
-                        </p>
-                        <p>
-                        <label class="title">النوع:</label>
-                        <span class="value">تاتت</span>
-                        </p>
-                        <p>
-                        <label class="title">كرت الشاشة:</label>
-                        <span class="value">انتل جي ام ايه عالى الدقة‎</span>
-                        </p>
-                        <p>
-                        <label class="title">النوع:</label>
-                        <span class="value">تاتت</span>
-                        </p>
+                        <div class="text-center"><h4>{{$item->title}}</h4></div>
+                        @foreach($item->specs->slice(0,15) as $spec)
+                        <div class="row card-spec text-center">
+                            <label class="col-5">{{$spec->spec_key}}:</label>
+                            <span class="col-5">{{$spec->spec_value}}  </span>
+                        </div>
+                        @endforeach
                     </div> <!-- end back panel -->
                 </div> <!-- end card -->
             </div>

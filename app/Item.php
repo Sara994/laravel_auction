@@ -33,4 +33,7 @@ class Item extends Model
     function photos(){
         return json_decode($this->photos);
     }
+    function specs(){
+        return $this->hasMany('App\ItemSpec','item_id');
+    }
 }

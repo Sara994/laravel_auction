@@ -89,13 +89,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/add',function(){
-    Schema::create('item_spec',function(Blueprint $table){
-        $table->increments('id');
-        $table->unsignedinteger('item_id');
-        $table->string('spec_key');
-        $table->string('spec_value');
-        $table->timestamps();
 
-        $table->foreign('item_id')->references('id')->on('item');
-    });
 });

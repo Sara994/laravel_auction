@@ -4,15 +4,28 @@ namespace App\Http\Controllers;
 use App\Item;
 use App\ItemTransaction;
 use App\Auction;
+use App\ItemSpec;
 use Illuminate\Http\Request;
 use Auth;
 use Log;
 use DB;
 
 class ItemController extends Controller{
+
     function create(Request $request){
         $fields = $request->except(['photos','end_time','start_price','min_increment']);
         $fields['seller_id'] = Auth::user()->id;
+        $extraFields = [];
+
+        foreach($fields as $index => $field){
+            if(substr( $index, 0, 9 ) === "spec_key_"){
+                $extraFields[$field] = $fields['spec_value_' . substr($index,9)];
+            }
+        }
+
+
+
+
         if($request->end_time && $request->min_increment && $request->start_price){
             $auction = Auction::create([
                 'start_time'=>date("Y-m-d H:i:s"),
@@ -35,6 +48,14 @@ class ItemController extends Controller{
             }
         }
         $item->update(['photos'=>json_encode($filenames)]);
+
+        foreach($extraFields as $index => $field){
+            ItemSpec::create([
+                'item_id' => $item->id,
+                'spec_key' => $index,
+                'spec_value' => $field
+            ]);
+        }
         return redirect('user/profile');
     }
 
