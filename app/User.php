@@ -28,6 +28,6 @@ class User extends Authenticatable
     ];
 
     function city(){
-        return $this->hasOne('App\city','id');
+        return $this->hasOne('App\City','id');
     }
 }
