@@ -7,7 +7,7 @@
 
 <div style="font-size:1.25rem">
     <h3>هذا المزاد منتهي</h3>
-    @if(!is_null($item->auction->heighest_bid()->user))
+    @if(!is_null($item->auction->heighest_bid()))
     <h3> تهانينا .. 
         <a href="{{url('/user/'.$item->auction->heighest_bid()->user->id)}}">
             {{$item->auction->heighest_bid()->user->username}}
