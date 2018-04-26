@@ -7,11 +7,17 @@
 
 <div style="font-size:1.25rem">
     <h3>هذا المزاد منتهي</h3>
+    @if(!is_null($item->auction->heighest_bid()->user))
     <h3> تهانينا .. 
         <a href="{{url('/user/'.$item->auction->heighest_bid()->user->id)}}">
             {{$item->auction->heighest_bid()->user->username}}
         </a>
     </h3>
+    @else
+        <h3> لم يوجد أي مزايدات على هذا المنتج
+            
+        </h3>
+    @endif
 
 </div>
 <div>
