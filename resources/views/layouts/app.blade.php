@@ -136,23 +136,6 @@
         </div>
     </nav>
 
-   
-       <!-- 
-            <script>
-            <?php
-
-        //require("includes/search.php");
-        //echo ("var items = " . json_encode(search()));
-
-        ?>
-
-        items = items.map(i => i.Title);
-        // ---------------------------- DB
-        $(function() {
-            autocomplete(document.getElementById("search"), items);
-        });
-    </script> -->
-
     <main style="flex:1;display:flex;flex-direction:column">
         @yield('content')
     </main>

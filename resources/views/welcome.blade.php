@@ -48,7 +48,9 @@
 <section class="furniture">
     <h3 style="padding-right:2%">{{App\ItemCategory::find($categoryId)->title}}</h3>
     <div class="row" style="display:flex;justify-content:space-around">
-        @foreach(App\Item::where('category_id',$categoryId)->orderBy('created_at','desc')->limit(5)->get() as $item)
+
+        @php $allCats = App\ItemCategory::select('id')->where('id',$categoryId)->orWhere('parent_id',$categoryId)->get() @endphp
+        @foreach(App\Item::whereIn('category_id',$allCats)->orderBy('created_at','desc')->limit(5)->get() as $item)
             <div class="card-container">
                 <div class="card" onclick="window.location = '{{'/item/' . $item->id}}'">
                     <div class="front">
