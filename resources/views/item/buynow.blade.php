@@ -19,7 +19,9 @@
 </div>
 <div>
     @php $rating = App\Review::where('item_id',$item->id)->where('user_id',Auth::user()->id)->first() @endphp
-    @if(is_null($rating))
+    @php $transaction = App\ItemTransaction::where('item_id',$item->id)->first() @endphp
+
+    @if(is_null($rating) && $transaction->user->id == Auth::user()->id)
     <fieldset>
         <legend>تقييم المنتج </legend>
         <form method="post" action="{{url('/item/'.$item->id.'/review')}}">
