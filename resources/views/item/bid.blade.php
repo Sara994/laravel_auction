@@ -5,11 +5,16 @@
     <div style="font-size:1.25rem">
         <h3>هذا المزاد منتهي</h3>
         @if(!is_null($item->auction->heighest_bid()))
+        @php $winner_user = $item->auction->heighest_bid()->user @endphp
         <h3> تهانينا .. 
             <a href="{{url('/user/'.$item->auction->heighest_bid()->user->id)}}">
-                {{$item->auction->heighest_bid()->user->username}}
+                {{$winner_user->username}}
             </a>
         </h3>
+
+        <div>
+            Add Review
+        </div>
         @else
             <h3> لم يوجد أي مزايدات على هذا المنتج</h3>
         @endif

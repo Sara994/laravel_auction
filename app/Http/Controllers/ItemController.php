@@ -5,6 +5,7 @@ use App\Item;
 use App\ItemTransaction;
 use App\Auction;
 use App\ItemSpec;
+use App\Bid;
 use Illuminate\Http\Request;
 use Auth;
 use Log;
@@ -74,6 +75,10 @@ class ItemController extends Controller{
         $items = Item::where('title','like',"%$needle%")->get();
         return json_encode($items);
     }
+    function searchandredirect(Request $request){
+        $items = Item::where('title','like',"%$request->needle%")->get();
+        return view('items',['items'=>$items]);
+    }
 
     function buy(Request $request){
         $item = Item::find($request->item_id);
@@ -98,6 +103,25 @@ class ItemController extends Controller{
     function myItems(){
         $items = Item::where('seller_id',Auth::user()->id)->orderby('created_at','desc')->get();
         return view('/user/items',['items'=>$items]);
+    }
+
+    function boughtItem(){
+        $itemTransactions = ItemTransaction::where('user_id',Auth::user()->id)->orderby('created_at','desc')->get();
+        $items = [];
+        foreach($itemTransactions as $transaction){
+            $items[] = $transaction->item;
+        }
+
+        $bids = Bid::where('user_id',Auth::user()->id)->orderby('created_at','desc')->get();
+
+        foreach($bids as $bid){
+            $auction = $bid->auction;
+            if(!$auction->isExpired() && $auction->get_heighset_bid()->user_id == Auth::user()->id){
+                $items[] = Item::where('auction_id',$auction->id)->first();
+            }
+        }
+
+        return view('/user/items',['items'=>$items,'allow_delete'=>false]);
     }
 
     function delete($itemId){

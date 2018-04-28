@@ -20,6 +20,6 @@ class Bid extends Model{
         return $this->hasOne('App\User','id','user_id');
     }
     function auction(){
-        return $this->hasOne('App\Auction','id');
+        return $this->hasOne('App\Auction','id','auction_id');
     }
 }

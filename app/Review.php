@@ -4,9 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Model
-{
-    use Notifiable;
+class Review extends Model{
     protected $table ="review";
 
     /**
@@ -14,12 +12,15 @@ class Review extends Model
      *
      * @var array
      */
-   
-   protected $fillable = [
-       'star_num','feedback','item_id'
-   ];
+    protected $fillable = [
+        'star_num','feedback','item_id','user_id'
+    ];
 
-   function item(){
-       $this->hasOne('App\Review');
-   }
+    function item(){
+        return $this->hasOne('App\Item','item_id');
+    }
+
+    function user(){
+        return $this->hasOne('App\User','poster_id');
+    }
 }

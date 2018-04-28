@@ -37,10 +37,12 @@ Route::get('/', function () {
 
 Route::group(['prefix'=>'item'],function(){
     Route::get('/search/{needle}','ItemController@search');
+    Route::get('/searchandredirect','ItemController@searchandredirect');
     Route::get('/{id}','ItemController@show');
     Route::post("/{id}/bid",'BidController@bid')->middleware('auth');
     Route::post("/confirm/{id}",'ItemController@buy')->middleware('auth');
     Route::get("/{id}/delete",'ItemController@delete')->middleware('auth');
+    Route::post("/{id}/review",'ReviewController@addReview')->middleware('auth');
 
     Route::get("/confirm/{id}",function($itemId){
         $item = Item::find($itemId);
@@ -65,7 +67,8 @@ Route::group(['prefix'=>'user'],function(){
     Route::get('/bids',function(){ return view('user/bids');});
     
     Route::get('/new_auction',function(){ return view('user/new_auction');})->middleware('auth');
-    Route::get('/items','ItemController@myItems');
+    Route::get('/items','ItemController@myItems')->middleware('auth');
+    Route::get('/boughtitems','ItemController@boughtItem')->middleware('auth');
     Route::get('/reviews',function(){ return view('user/reviews');});
 });
 

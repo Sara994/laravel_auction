@@ -1,0 +1,90 @@
+.rating {
+	text-align: center;
+	float: right;
+}
+.rating span {
+    display: inline-block;
+    position: relative;
+    font-size: 1.3em;
+    color: #555;
+}
+.rating span.on:before {
+	content: "\2605";
+	position: absolute;
+	left: 0;
+	color: #F07818;
+}
+
+/*--single-ratings--*/
+.single-rating {
+    margin: 1em 0 1.5em;
+}
+.starRating:not(old) {
+    display: inline-block;
+    height: 18px;
+	width:100px;
+    overflow: hidden;
+	vertical-align: middle;
+}
+
+.starRating:not(old) > input{
+  margin-right : -100%;
+  opacity      : 0;
+}
+
+.starRating:not(old) > label {
+    float: right;
+    background: url(/img/star.png);
+    background-size: contain;
+	margin-right: 2px;
+}
+
+.starRating:not(old) > label:before{
+  content         : '';
+  display         : block;
+  width           : 18px;
+  height          : 18px;
+  background      : url(/img/star1.png);
+  background-size : contain;
+  opacity         : 0;
+  transition      : opacity 0.2s linear;
+}
+
+.starRating:not(old) > label:hover:before,
+.starRating:not(old) > label:hover ~ label:before,
+.starRating:not(:hover) > :checked ~ label:before{
+  -moz-opacity : 1;
+  opacity : 1;
+}
+/*--//single-ratings--*/
+.single-info .single-rating p {
+    display: inline-block;
+    font-size: 1em;
+    color: #999;
+    font-weight: 500;
+    margin: 0 0.5em;
+	vertical-align: middle;
+}
+.single-rating a {
+    font-size: 1em;
+    color: #999;
+    font-weight: 500;
+	vertical-align: middle;
+}
+.single-rating a:hover{
+    color: #ff590f;
+}
+.single-rating a:before {
+    padding: 0 8px;
+    color: #353F49;
+    content: "/\00a0";
+}
+
+.rating span {
+    font-size: 1.1em;
+    vertical-align: middle;
+}
+
+.rating span {
+    font-size: 1em;
+}

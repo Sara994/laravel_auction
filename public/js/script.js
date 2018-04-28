@@ -175,3 +175,22 @@ function addNewSpec(){
   })
 }
 
+$(document).ready(function(){
+  $('[data-id]').click(function(e){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var val = $(e.currentTarget).attr('data-id');
+    $(e.currentTarget.parentNode)
+        .find('input[data-id=' + val + ']')
+        .first().attr('checked',true);
+    var form = $(e.currentTarget).parents('form:first');
+    var feedback = form.find('[name=feedback]')[0].value;
+    var item_id = form.find('input[name="item_id"]')[0].value;
+    var star_num = val.slice(6)
+    $.post('/item/'+item_id+'/review',{
+        _token:CSRF_TOKEN,
+        item_id:item_id,
+        feedback:feedback,
+        star_num:star_num
+    });
+  });
+})

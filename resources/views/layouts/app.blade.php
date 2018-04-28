@@ -5,8 +5,8 @@
     <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet'>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
+    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"> --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
@@ -17,6 +17,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/boot.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('css/rating_style.css') }}" /> --}}
+
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style_item.css') }}">
     <script src="{{asset('js/script.js')}}"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -69,39 +71,40 @@
     </header>
 
     <nav class="menu_list" style="margin-bottom:10px;display:flex;overflow:visible;position:relative">
-        <div style="flex:2;justify-content:center;display:flex;">
-            <input id="search" type="text" placeholder="ابحث عن" style="width:90%;line-height:2;align-self:center">
-        </div>
-
-        <div class="dropdown-container">
-            <div class="dropdown">
-                <button class="dropbtn" style="margin:0px;border-left:solid; border-right:solid; border-width: thin; border-color:black">المدن</button>
-                <div class="dropdown-content">
-                    
-                    @foreach (App\City::all() as $city)
-                        <div><a href="#">{{$city->name}}</a></div>
-                    @endforeach
-                    
-                </div>
+        <form  style="flex:2;justify-content:center;display:flex;" method="get" action="/item/searchandredirect">
+            <div style="flex:2;justify-content:center;display:flex;">
+                <input autocomplete="off" id="search" name="needle" type="text" placeholder="ابحث عن" style="width:90%;line-height:2;align-self:center">
             </div>
 
-            <div style="flex:1" class="dropdown">
-                <button class="dropbtn" style="margin:0px;border-left:solid; border-right-color:#b30000; border-width: thin; border-color:black">الأقسام</button>
-                <div class="dropdown-content">
-                    @foreach (App\ItemCategory::whereNull('parent_id')->get() as $category)
-                        <div><a href="#">{{$category->title}}</a></div>
-                        @foreach($category->children() as $sub)
-                            <div>{{$sub->title}}</div>
-                        @endforeach    
-                    @endforeach
+            <div class="dropdown-container">
+                <div class="dropdown">
+                    <button class="dropbtn" style="margin:0px;border-left:solid; border-right:solid; border-width: thin; border-color:black">المدن</button>
+                    <div class="dropdown-content">
+                        
+                        @foreach (App\City::all() as $city)
+                            <div><a href="#">{{$city->name}}</a></div>
+                        @endforeach
+                        
+                    </div>
+                </div>
+
+                <div style="flex:1" class="dropdown">
+                    <button class="dropbtn" style="margin:0px;border-left:solid; border-right-color:#b30000; border-width: thin; border-color:black">الأقسام</button>
+                    <div class="dropdown-content">
+                        @foreach (App\ItemCategory::whereNull('parent_id')->get() as $category)
+                            <div><a href="#">{{$category->title}}</a></div>
+                            @foreach($category->children() as $sub)
+                                <div>{{$sub->title}}</div>
+                            @endforeach    
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
-        <div style="align-self:center;margin-right:15px;">
-            <button>ابحث</button>
-        </div>
-        <div style="Flex:8"></div>
-
+            <div style="align-self:center;margin-right:15px;">
+                <button>ابحث</button>
+            </div>
+            <div style="Flex:8"></div>
+        </form>
     </nav>
     <nav>
         <div id="wrap">
@@ -109,7 +112,8 @@
                 <div>
                     <div class="header">
                         <div class="menu">
-                            <ul class="menu_list"><li><a class="active" href="{{url('/following')}}">متابعاتي </a></li>
+                            <ul class="menu_list">
+                                {{-- <li><a class="active" href="{{url('/following')}}">متابعاتي </a></li> --}}
                                 <li>
                                     <a class="active" href="{{url('/today')}}">جديد اليوم </a>
                                 </li>

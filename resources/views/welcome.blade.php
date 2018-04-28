@@ -18,7 +18,6 @@
                             <img class="d-block" src="{{asset('img/placeholder.gif')}}">
                         @endif
 
-
                         <div class="carousel-link">
                             <div>{{$item->title}}</div>
                             @if($item->auction)
@@ -50,7 +49,7 @@
     <div class="row" style="display:flex;justify-content:space-around">
 
         @php $allCats = App\ItemCategory::select('id')->where('id',$categoryId)->orWhere('parent_id',$categoryId)->get() @endphp
-        @foreach(App\Item::whereIn('category_id',$allCats)->orderBy('created_at','desc')->limit(5)->get() as $item)
+        @foreach(App\Item::whereIn('category_id',$allCats)->orderBy('created_at','desc')->limit(4)->get() as $item)
             <div class="card-container">
                 <div class="card" onclick="window.location = '{{'/item/' . $item->id}}'">
                     <div class="front">

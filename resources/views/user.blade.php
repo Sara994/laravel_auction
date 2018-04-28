@@ -126,7 +126,6 @@
     <div>
         <div class="navigation">
             <ul class="mainmenu">
-
                 <li><a href="{{url('user/profile')}}"><span class ="fa fa-user"></span> معلومات الشخصية</a></li>  
                 <li><a href="{{url('user/items')}}"><span class ="fa fa-user"></span>منتجاتي</a></li>  
 
@@ -135,12 +134,11 @@
                     <ul class="submenu">
                         <li><a href="{{url('user/new_item')}}"><style class="fa fa-plus"></style>اضافة منتج </a></li>  
                         <li><a href="#"><style class="fa fa-edit"></style> تعديل منتج </a></li> 
-                        <li><a href="#"><style class="fa fa-remove"></style> حذف منتج </a></li> 
+                        <li><a href="{{url('user/items')}}"><style class="fa fa-remove"></style> حذف منتج </a></li> 
                     </ul>
                 </li>  
 
-                <li><a href="#"><span class="fas fa-gavel"></span>مبيعاتي</a></li>  
-                <li><a href="#"> <span class ="fa cart-plus"></span> مشترياتي</a></li>
+                <li><a href="{{url('user/boughtitems')}}"> <span class ="fa cart-plus"></span> مشترياتي</a></li>
                 <li><a href="#"><span class ="fa fa-users"></span> تقيماتي</a></li>   
             </ul>  
         </div>

@@ -20,7 +20,21 @@
             <div style="flex:3;display:flex;flex-direction:column;justify-content:space-between">
                 <div style="align-self:flex-end;margin:20px">
                     <h3>البائع: <a href="{{url('/user/'.$item->seller->id)}}">{{$item->seller->username}}</a> </h3>
-                    <div style="width:20%"><img style="max-width: 100%" src="{{url('img/rating.jpeg')}}"></div>
+                    <div style="width:20%">
+                        {{-- <img style="max-width: 100%" src="{{url('img/rating.jpeg')}}"> --}}
+                        <span class="staticStarRating">
+                            <input type="radio" name="star_num" value="5" {{$item->seller->rating() == 5? "checked":""}}>
+                            <label >5</label>
+                            <input type="radio" name="star_num" value="4" {{$item->seller->rating() == 4? "checked":""}}>
+                            <label>4</label>
+                            <input type="radio" name="star_num" value="3" {{$item->seller->rating() == 3? "checked":""}}>
+                            <label>3</label>
+                            <input type="radio" name="star_num" value="2" {{$item->seller->rating() == 2? "checked":""}}>
+                            <label>2</label>
+                            <input type="radio" name="star_num" value="1" {{$item->seller->rating() == 1? "checked":""}}>
+                            <label>1</label>
+                        </span>
+                    </div>
                 </div>
                 <div>
                     <span style="font-weight:900;font-size:2rem">{{$item->title}}</span>
