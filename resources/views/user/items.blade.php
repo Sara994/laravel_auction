@@ -6,7 +6,7 @@
     @foreach($items as $item)
         <div class="row">
             <div class="col">
-                {{$item->title}}
+                <a href="{{url('/item/'.$item->id)}}">{{$item->title}}</a>
             </div>
             <div class="col">
                 {{$item->subtitle}}
