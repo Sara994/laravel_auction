@@ -20,23 +20,7 @@
         @endif
 
     </div>
-    <div>
-        <table class="table">
-            <thead><tr>
-                <th scope="col">Price</td>
-                <th scope="col">Username</td>
-            </tr></thead>
-            <tbody>
-        
-        @foreach($item->auction->bids as $bid)
-            <tr>
-                <th scope="row">{{$bid->price}}</th>
-                <td>{{$bid->user->username}}</td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
-    </div>
+
 @else
     <div style="font-size:1.25rem">
         الوقت المتبقي: <span id="end_time_counter"></span>
@@ -55,4 +39,21 @@
         </form>
     </div>
 @endif
+<div>
+    <table class="table">
+        <thead><tr>
+            <th scope="col">Price</td>
+            <th scope="col">Username</td>
+        </tr></thead>
+        <tbody>
+    
+    @foreach($item->auction->bids as $bid)
+        <tr>
+            <th scope="row">{{$bid->price}}</th>
+            <td>{{$bid->user->username}}</td>
+        </tr>
+    @endforeach
+        </tbody>
+    </table>
+</div>
 @endsection
