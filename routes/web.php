@@ -78,7 +78,7 @@ Route::group(['prefix'=>'user'],function(){
 
 Route::get('following',function(){return view('items',['items'=>[]]);});
 Route::get('today',function(){
-    $items = App\Item::whereDay('create_at', date('d'))->get();
+    $items = App\Item::whereDay('created_at', date('d'))->get();
     return view('items',['items'=>$items]);
 });
 Route::get('ending_today',function(){
