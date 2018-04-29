@@ -72,7 +72,8 @@ Route::group(['prefix'=>'user'],function(){
     Route::get('/reviews',function(){ return view('user/reviews');});
     Route::get('/{id}',function($userId){
         $user = App\User::find($userId);
-        return view('/user/public',['user'=>$user]);
+        $items = App\Item::where('seller_id',$userId)->orderBy('created_at','desc')->get();
+        return view('/user/public',['user'=>$user,'items'=>$items]);
     });
 });
 
