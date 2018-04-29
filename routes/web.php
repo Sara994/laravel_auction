@@ -119,8 +119,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/add',function(){
-
+Route::get('/category/{id}',function($catId){
+    
+    $items = App\Item::where('category_id',$catId)->limit(30)->get();
+    return view('items',['items'=>$items]);
 });
 
 Route::get('/admin',function(){
