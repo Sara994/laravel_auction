@@ -85,7 +85,10 @@ Route::get('ending_today',function(){
     $auctions = App\Auction::whereDay('end_time', date('d'))->get();
     $items = [];
     foreach($auctions as $a ){
-        $items[] = App\Item::where('auction_id',$a->id)->first();
+        $auc = App\Item::where('auction_id',$a->id)->first();
+        if(!is_null){
+            $items[] = $auc;
+        }
     }
 
     return view('items',['items'=>$items]);
@@ -94,7 +97,10 @@ Route::get('last_chance',function(){
     $auctions = App\Auction::whereDay('end_time', date('h'))->get();
     $items = [];
     foreach($auctions as $a ){
-        $items[] = App\Item::where('auction_id',$a->id)->first();
+        $auc = App\Item::where('auction_id',$a->id)->first();
+        if(!is_null){
+            $items[] = $auc;
+        }
     }
 
     return view('items',['items'=>$items]);
