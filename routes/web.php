@@ -120,8 +120,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/category/{id}',function($catId){
-    
-    $items = App\Item::where('category_id',$catId)->limit(30)->get();
+    $allCats = App\ItemCategory::select('id')->where('id',$catId)->orWhere('parent_id',$catId)->get();
+    //foreach(App\Item::whereIn('category_id',$allCats)->orderBy('created_at','desc')->limit(3)->get() as $item)
+    $items = App\Item::whereIn('category_id',$allCats)->orderBy('created_at','desc')->limit(30)->get();
     return view('items',['items'=>$items]);
 });
 
