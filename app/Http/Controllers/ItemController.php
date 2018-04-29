@@ -116,7 +116,7 @@ class ItemController extends Controller{
 
         foreach($bids as $bid){
             $auction = $bid->auction;
-            if(!$auction->isExpired() && $auction->get_heighset_bid()->user_id == Auth::user()->id){
+            if($auction->isExpired() && $auction->get_heighset_bid()->user_id == Auth::user()->id){
                 $items[] = Item::where('auction_id',$auction->id)->first();
             }
         }
