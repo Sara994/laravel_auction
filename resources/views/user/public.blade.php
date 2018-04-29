@@ -22,7 +22,7 @@
     <fieldset>
         <legend>منتجاتي</legend>
         @foreach($items as $item)
-        <div class="card-container">
+        <div class="card-container center-block">
             <div class="card" onclick="window.location = '{{'/item/' . $item->id}}'">
                 <div class="front">
                     <div class="cover">
