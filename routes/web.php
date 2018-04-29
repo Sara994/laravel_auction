@@ -106,3 +106,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/add',function(){
 
 });
+
+Route::get('/admin',function(){
+    $items = App\Item::all();
+    return view('admin',['items'=>$items]);
+})->middleware('auth');
+Route::get('/admin/item/{id}/delete',function($itemId){
+    App\Item::delete($itemId);
+    $items = App\Item::all();
+    return view('admin',['items'=>$items]);
+})->middleware('auth');
