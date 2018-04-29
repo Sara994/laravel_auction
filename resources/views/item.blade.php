@@ -41,8 +41,8 @@
                     <span><img class="fav_star" src="{{url('img/star.png')}}"></span>
                     <span>أضف إلى المفضلة</span>
                 </div>
-                <span style="font-weight:900;font-size:1rem">مستعمل قليلا منذ 2016 سعة 5 جيجابايت</span>
-                <span style="font-weight:900;font-size:1rem;color:rgb(102, 102, 102)">رقم السلعة: 10888738</span>
+                <span style="font-weight:900;font-size:1rem">{{$item->description}}</span>
+                <span style="font-weight:900;font-size:1rem;color:rgb(102, 102, 102)">رقم السلعة: {{$item->id}}</span>
              <!-- <hr align="right" style="width:50%"> -->
                 <hr align="right" style="width:50%"> 
                 <div style="font-size:1.3rem">
