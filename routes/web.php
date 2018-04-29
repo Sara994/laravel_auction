@@ -78,15 +78,15 @@ Route::group(['prefix'=>'user'],function(){
 
 Route::get('following',function(){return view('items',['items'=>[]]);});
 Route::get('today',function(){
-    $items = App\Item::join('auction','auction.id','item.auction_id')->whereDay('start_time', date('d'))->get();
+    $items = App\Item::whereDay('create_at', date('d'))->get();
     return view('items',['items'=>$items]);
 });
 Route::get('ending_today',function(){
-    $items = App\Auction::whereDay('end_time', date('d'))->get();
+    $items = App\Item::whereNotNull('auction_id')->whereDay('end_time', date('d'))->get();
     return view('items',['items'=>$items]);
 });
 Route::get('last_chance',function(){
-    $items = App\Auction::whereDay('end_time', date('h'))->get();
+    $items = App\Item::whereNotNull('auction_id')->whereDay('end_time', date('h'))->get();
     return view('items',['items'=>$items]);
 });
 Route::get('buy_now',function(){
@@ -112,7 +112,8 @@ Route::get('/admin',function(){
     return view('admin',['items'=>$items]);
 })->middleware('auth');
 Route::get('/admin/item/{id}/delete',function($itemId){
-    App\Item::delete($itemId);
+    $item = App\Item::find($itemId);
+    $item->delete();
     $items = App\Item::all();
     return view('admin',['items'=>$items]);
 })->middleware('auth');
