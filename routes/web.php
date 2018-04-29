@@ -86,7 +86,7 @@ Route::get('ending_today',function(){
     $items = [];
     foreach($auctions as $a ){
         $auc = App\Item::where('auction_id',$a->id)->first();
-        if(!is_null){
+        if(!is_null($auc)){
             $items[] = $auc;
         }
     }
@@ -98,7 +98,7 @@ Route::get('last_chance',function(){
     $items = [];
     foreach($auctions as $a ){
         $auc = App\Item::where('auction_id',$a->id)->first();
-        if(!is_null){
+        if(!is_null($auc)){
             $items[] = $auc;
         }
     }
