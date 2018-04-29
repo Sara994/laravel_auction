@@ -13,7 +13,7 @@
             <div class="card" onclick="window.location = '{{'/item/' . $item->id}}'">
                 <div class="front">
                     <div class="cover">
-                        <img src="{{ is_array($item->photos()) && count($item->photos()) > 0 ? $item->photos()[0]:url('/img/placeholder.gif')}}" style="max-height;100%;max-width:100%;">
+                        <img src="{{ is_array($item->photos()) && count($item->photos()) > 0 ? '/'. $item->photos()[0]:url('/img/placeholder.gif')}}" style="max-height;100%;max-width:100%;">
                     </div>
                     <div class="content">
                         <div class="main">

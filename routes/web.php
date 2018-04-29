@@ -70,6 +70,10 @@ Route::group(['prefix'=>'user'],function(){
     Route::get('/items','ItemController@myItems')->middleware('auth');
     Route::get('/boughtitems','ItemController@boughtItem')->middleware('auth');
     Route::get('/reviews',function(){ return view('user/reviews');});
+    Route::get('/{id}',function($userId){
+        $user = App\User::find($userId);
+        return view('/user/public',['user'=>$user]);
+    });
 });
 
 Route::get('following',function(){return view('items',['items'=>[]]);});
