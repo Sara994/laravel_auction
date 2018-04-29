@@ -82,11 +82,21 @@ Route::get('today',function(){
     return view('items',['items'=>$items]);
 });
 Route::get('ending_today',function(){
-    $items = App\Item::whereNotNull('auction_id')->whereDay('end_time', date('d'))->get();
+    $auctions = App\Auction::whereDay('end_time', date('d'))->get();
+    $items = [];
+    foreach($auctions as $a ){
+        $items[] = App\Item::where('auction_id',$a->id)->first();
+    }
+
     return view('items',['items'=>$items]);
 });
 Route::get('last_chance',function(){
-    $items = App\Item::whereNotNull('auction_id')->whereDay('end_time', date('h'))->get();
+    $auctions = App\Auction::whereDay('end_time', date('h'))->get();
+    $items = [];
+    foreach($auctions as $a ){
+        $items[] = App\Item::where('auction_id',$a->id)->first();
+    }
+
     return view('items',['items'=>$items]);
 });
 Route::get('buy_now',function(){
