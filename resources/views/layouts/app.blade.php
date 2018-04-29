@@ -92,9 +92,9 @@
                     <button class="dropbtn" style="margin:0px;border-left:solid; border-right-color:#b30000; border-width: thin; border-color:black">الأقسام</button>
                     <div class="dropdown-content">
                         @foreach (App\ItemCategory::whereNull('parent_id')->get() as $category)
-                            <div><a href="#">{{$category->title}}</a></div>
+                            <div class="category"><a href="{{url('/category/'.$category->id)}}">{{$category->title}}</a></div>
                             @foreach($category->children() as $sub)
-                                <div>{{$sub->title}}</div>
+                                <div class="subcategory"><a href="{{url('/category/'.$sub->id)}}">{{$sub->title}}</a></div>
                             @endforeach    
                         @endforeach
                     </div>
